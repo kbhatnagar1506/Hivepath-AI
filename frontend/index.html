@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwarmAura - AI-Powered Routing System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .status {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .status-value {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .online {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .offline {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .api-endpoints {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .api-endpoints h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .endpoint {
+            font-family: 'Courier New', monospace;
+            background: #e9ecef;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">SwarmAura</div>
+        <div class="subtitle">AI-Powered Routing System with Geographic Intelligence</div>
+        
+        <div class="status">
+            <h3>System Status</h3>
+            <div class="status-item">
+                <span class="status-label">Backend API</span>
+                <span class="status-value" id="backend-status">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Redis Cache</span>
+                <span class="status-value" id="redis-status">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Environment</span>
+                <span class="status-value online">Production</span>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-title">🤖 AI-Powered Routing</div>
+                <div class="feature-desc">Advanced ML models for optimal route optimization</div>
+            </div>
+            <div class="feature">
+                <div class="feature-title">🗺️ Geographic Intelligence</div>
+                <div class="feature-desc">Real-time geographic data and 3D visualization</div>
+            </div>
+            <div class="feature">
+                <div class="feature-title">⚡ Real-time Coordination</div>
+                <div class="feature-desc">Live agent coordination and status updates</div>
+            </div>
+            <div class="feature">
+                <div class="feature-title">♿ Accessibility Focus</div>
+                <div class="feature-desc">Comprehensive accessibility evaluation and routing</div>
+            </div>
+        </div>
+        
+        <div class="api-endpoints">
+            <h3>API Endpoints</h3>
+            <div class="endpoint">GET / - System information</div>
+            <div class="endpoint">GET /health - Health check</div>
+            <div class="endpoint">GET /api/v1/status - API status</div>
+            <div class="endpoint">POST /api/v1/optimize - Route optimization</div>
+            <div class="endpoint">POST /api/v1/multi-location - Multi-location routing</div>
+        </div>
+        
+        <a href="https://swarmaura-backend-1759601629-a851f87f1a0b.herokuapp.com/" class="btn" target="_blank">
+            View API Documentation
+        </a>
+        <a href="https://github.com/kbhatnagar1506/Hivepath-AI" class="btn" target="_blank">
+            View Source Code
+        </a>
+    </div>
+    
+    <script>
+        // Check backend status
+        async function checkStatus() {
+            try {
+                const response = await fetch('https://swarmaura-backend-1759601629-a851f87f1a0b.herokuapp.com/api/v1/status');
+                const data = await response.json();
+                
+                document.getElementById('backend-status').textContent = 'Online';
+                document.getElementById('backend-status').className = 'status-value online';
+                
+                if (data.redis === 'connected') {
+                    document.getElementById('redis-status').textContent = 'Connected';
+                    document.getElementById('redis-status').className = 'status-value online';
+                } else {
+                    document.getElementById('redis-status').textContent = 'Not Configured';
+                    document.getElementById('redis-status').className = 'status-value offline';
+                }
+            } catch (error) {
+                document.getElementById('backend-status').textContent = 'Offline';
+                document.getElementById('backend-status').className = 'status-value offline';
+                document.getElementById('redis-status').textContent = 'Unknown';
+                document.getElementById('redis-status').className = 'status-value offline';
+            }
+        }
+        
+        // Check status on load
+        checkStatus();
+        
+        // Refresh status every 30 seconds
+        setInterval(checkStatus, 30000);
+    </script>
+</body>
+</html>
