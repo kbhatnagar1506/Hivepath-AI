@@ -1,0 +1,15 @@
+{
+  "run_id": "mini-001",
+  "depot": { "id": "DEPOT", "lat": 42.3601, "lng": -71.0589 },
+  "vehicles": [
+    { "id": "T1", "capacity": 600, "fuel_type": "diesel" },
+    { "id": "T2", "capacity": 600, "fuel_type": "ev" }
+  ],
+  "stops": [
+    { "id": "A", "lat": 42.37, "lng": -71.05, "demand": 150, "priority": 2, "service_min": 6, "time_window": { "start": "09:00:00", "end": "22:00:00" } },
+    { "id": "B", "lat": 42.34, "lng": -71.10, "demand": 220, "priority": 3, "service_min": 6 },
+    { "id": "C", "lat": 42.39, "lng": -71.02, "demand": 180, "priority": 1, "service_min": 6 },
+    { "id": "D", "lat": 42.33, "lng": -71.06, "demand": 120, "priority": 1, "service_min": 6 }
+  ],
+  "speed_kmph": 35.0
+}
