@@ -1,0 +1,59 @@
+{
+  "name": "SwarmAura Backend",
+  "description": "AI-powered routing optimization backend with ML models",
+  "repository": "https://github.com/kbhatnagar1506/Hivepath-AI",
+  "logo": "https://raw.githubusercontent.com/kbhatnagar1506/Hivepath-AI/main/swarmaura/logo.png",
+  "keywords": ["python", "fastapi", "ml", "routing", "optimization", "ai"],
+  "success_url": "/",
+  "scripts": {
+    "dokku": {
+      "predeploy": "pip install -r requirements.txt"
+    }
+  },
+  "env": {
+    "REDIS_URL": {
+      "description": "Redis connection URL",
+      "value": "redis://localhost:6379/0"
+    },
+    "SERVICE_NAME": {
+      "description": "Service name",
+      "value": "routeloom"
+    },
+    "LOG_LEVEL": {
+      "description": "Logging level",
+      "value": "INFO"
+    },
+    "GOOGLE_MAPS_API_KEY": {
+      "description": "Google Maps API Key for geocoding and routing",
+      "required": true
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API Key for ML models",
+      "required": true
+    },
+    "BASE_BACKEND_URL": {
+      "description": "Base backend URL",
+      "value": "https://your-app-name.herokuapp.com"
+    },
+    "VLM_MODEL": {
+      "description": "Vision Language Model to use",
+      "value": "gpt-4o-mini"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-redis:mini"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
