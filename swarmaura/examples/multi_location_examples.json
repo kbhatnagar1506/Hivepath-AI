@@ -1,0 +1,216 @@
+{
+  "pickup_delivery_example": {
+    "run_id": "pickup-delivery-001",
+    "locations": [
+      {
+        "id": "DEPOT",
+        "lat": 42.3601,
+        "lng": -71.0589,
+        "location_type": "depot"
+      },
+      {
+        "id": "P1",
+        "lat": 42.37,
+        "lng": -71.05,
+        "location_type": "pickup",
+        "demand": 150,
+        "priority": 3,
+        "time_window": {"start": "09:00:00", "end": "12:00:00"},
+        "service_min": 10
+      },
+      {
+        "id": "D1",
+        "lat": 42.34,
+        "lng": -71.10,
+        "location_type": "delivery",
+        "demand": -150,
+        "priority": 3,
+        "time_window": {"start": "13:00:00", "end": "17:00:00"},
+        "service_min": 15
+      },
+      {
+        "id": "P2",
+        "lat": 42.39,
+        "lng": -71.02,
+        "location_type": "pickup",
+        "demand": 200,
+        "priority": 2,
+        "time_window": {"start": "10:00:00", "end": "14:00:00"},
+        "service_min": 8
+      },
+      {
+        "id": "D2",
+        "lat": 42.33,
+        "lng": -71.06,
+        "location_type": "delivery",
+        "demand": -200,
+        "priority": 2,
+        "time_window": {"start": "15:00:00", "end": "18:00:00"},
+        "service_min": 12
+      },
+      {
+        "id": "S1",
+        "lat": 42.35,
+        "lng": -71.12,
+        "location_type": "service",
+        "demand": 0,
+        "priority": 1,
+        "service_min": 20
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "T1",
+        "capacity": 1000,
+        "fuel_type": "diesel",
+        "allowed_location_types": ["pickup", "delivery", "service"]
+      },
+      {
+        "id": "T2",
+        "capacity": 800,
+        "fuel_type": "ev",
+        "allowed_location_types": ["pickup", "delivery", "service"]
+      }
+    ],
+    "pickup_delivery_pairs": [
+      {"pickup": "P1", "delivery": "D1"},
+      {"pickup": "P2", "delivery": "D2"}
+    ],
+    "speed_kmph": 35.0,
+    "preset": "pickup_delivery"
+  },
+
+  "multi_depot_example": {
+    "run_id": "multi-depot-001",
+    "locations": [
+      {
+        "id": "DEPOT_NORTH",
+        "lat": 42.40,
+        "lng": -71.05,
+        "location_type": "depot"
+      },
+      {
+        "id": "DEPOT_SOUTH",
+        "lat": 42.32,
+        "lng": -71.08,
+        "location_type": "depot"
+      },
+      {
+        "id": "C1",
+        "lat": 42.37,
+        "lng": -71.05,
+        "location_type": "service",
+        "demand": 180,
+        "priority": 2,
+        "time_window": {"start": "09:00:00", "end": "17:00:00"},
+        "service_min": 15
+      },
+      {
+        "id": "C2",
+        "lat": 42.34,
+        "lng": -71.10,
+        "location_type": "service",
+        "demand": 120,
+        "priority": 1,
+        "time_window": {"start": "10:00:00", "end": "16:00:00"},
+        "service_min": 10
+      },
+      {
+        "id": "C3",
+        "lat": 42.39,
+        "lng": -71.02,
+        "location_type": "service",
+        "demand": 220,
+        "priority": 3,
+        "time_window": {"start": "08:00:00", "end": "18:00:00"},
+        "service_min": 20
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "T1",
+        "capacity": 1200,
+        "fuel_type": "diesel",
+        "start_location": "DEPOT_NORTH"
+      },
+      {
+        "id": "T2",
+        "capacity": 1000,
+        "fuel_type": "ev",
+        "start_location": "DEPOT_SOUTH"
+      }
+    ],
+    "speed_kmph": 40.0,
+    "preset": "multi_depot"
+  },
+
+  "service_route_with_dependencies": {
+    "run_id": "service-deps-001",
+    "locations": [
+      {
+        "id": "DEPOT",
+        "lat": 42.3601,
+        "lng": -71.0589,
+        "location_type": "depot"
+      },
+      {
+        "id": "INSPECTION",
+        "lat": 42.37,
+        "lng": -71.05,
+        "location_type": "service",
+        "demand": 0,
+        "priority": 3,
+        "time_window": {"start": "09:00:00", "end": "11:00:00"},
+        "service_min": 30,
+        "group_id": "customer_A"
+      },
+      {
+        "id": "REPAIR",
+        "lat": 42.35,
+        "lng": -71.08,
+        "location_type": "service",
+        "demand": 0,
+        "priority": 2,
+        "time_window": {"start": "12:00:00", "end": "16:00:00"},
+        "service_min": 60,
+        "group_id": "customer_A",
+        "dependencies": ["INSPECTION"]
+      },
+      {
+        "id": "TESTING",
+        "lat": 42.33,
+        "lng": -71.06,
+        "location_type": "service",
+        "demand": 0,
+        "priority": 1,
+        "time_window": {"start": "17:00:00", "end": "19:00:00"},
+        "service_min": 45,
+        "group_id": "customer_A",
+        "dependencies": ["REPAIR"]
+      },
+      {
+        "id": "DELIVERY",
+        "lat": 42.39,
+        "lng": -71.02,
+        "location_type": "delivery",
+        "demand": -100,
+        "priority": 1,
+        "time_window": {"start": "20:00:00", "end": "22:00:00"},
+        "service_min": 10,
+        "group_id": "customer_A",
+        "dependencies": ["TESTING"]
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "SERVICE_TECH",
+        "capacity": 500,
+        "fuel_type": "ev",
+        "allowed_location_types": ["service", "delivery"],
+        "max_stops": 10
+      }
+    ],
+    "speed_kmph": 30.0,
+    "preset": "service_routes"
+  }
+}

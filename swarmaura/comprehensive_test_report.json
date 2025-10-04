@@ -1,0 +1,592 @@
+{
+  "timestamp": "2025-10-04T08:25:21.357061",
+  "total_test_time": 92.37417221069336,
+  "test_results": {
+    "swarmaura_ml": {
+      "status": "failed",
+      "error": "'lat'"
+    },
+    "swarmaura_performance": {
+      "status": "success",
+      "data": [
+        {
+          "scenario": "Small",
+          "stops": 3,
+          "vehicles": 2,
+          "time_limit": 5,
+          "solve_time": 5.017720937728882,
+          "total_distance": 4.27,
+          "total_time": 5,
+          "served_stops": 3,
+          "success": true
+        },
+        {
+          "scenario": "Small",
+          "stops": 3,
+          "vehicles": 2,
+          "time_limit": 10,
+          "solve_time": 10.001227140426636,
+          "total_distance": 4.27,
+          "total_time": 5,
+          "served_stops": 3,
+          "success": true
+        },
+        {
+          "scenario": "Small",
+          "stops": 3,
+          "vehicles": 2,
+          "time_limit": 15,
+          "solve_time": 15.001528024673462,
+          "total_distance": 4.27,
+          "total_time": 5,
+          "served_stops": 3,
+          "success": true
+        },
+        {
+          "scenario": "Medium",
+          "stops": 6,
+          "vehicles": 3,
+          "time_limit": 5,
+          "solve_time": 5.001332998275757,
+          "total_distance": 13.77,
+          "total_time": 17,
+          "served_stops": 6,
+          "success": true
+        },
+        {
+          "scenario": "Medium",
+          "stops": 6,
+          "vehicles": 3,
+          "time_limit": 10,
+          "solve_time": 10.001299142837524,
+          "total_distance": 13.77,
+          "total_time": 17,
+          "served_stops": 6,
+          "success": true
+        },
+        {
+          "scenario": "Medium",
+          "stops": 6,
+          "vehicles": 3,
+          "time_limit": 15,
+          "solve_time": 15.00367021560669,
+          "total_distance": 13.77,
+          "total_time": 17,
+          "served_stops": 6,
+          "success": true
+        },
+        {
+          "scenario": "Large",
+          "stops": 10,
+          "vehicles": 4,
+          "time_limit": 5,
+          "solve_time": 5.00229024887085,
+          "total_distance": 27.439999999999998,
+          "total_time": 36,
+          "served_stops": 10,
+          "success": true
+        },
+        {
+          "scenario": "Large",
+          "stops": 10,
+          "vehicles": 4,
+          "time_limit": 10,
+          "solve_time": 10.00136113166809,
+          "total_distance": 27.439999999999998,
+          "total_time": 36,
+          "served_stops": 10,
+          "success": true
+        },
+        {
+          "scenario": "Large",
+          "stops": 10,
+          "vehicles": 4,
+          "time_limit": 15,
+          "solve_time": 15.002218961715698,
+          "total_distance": 27.439999999999998,
+          "total_time": 36,
+          "served_stops": 10,
+          "success": true
+        }
+      ]
+    },
+    "geographic_intelligence": {
+      "status": "success",
+      "running": true,
+      "available": false,
+      "package_info": {
+        "name": "hackmit25",
+        "private": true,
+        "version": "0.0.1",
+        "type": "module",
+        "scripts": {
+          "dev": "vite dev",
+          "build": "vite build",
+          "preview": "vite preview",
+          "prepare": "svelte-kit sync || echo ''",
+          "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+          "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+          "format": "prettier --write .",
+          "lint": "prettier --check . && eslint ."
+        },
+        "devDependencies": {
+          "@eslint/compat": "^1.2.5",
+          "@eslint/js": "^9.18.0",
+          "@lucide/svelte": "^0.544.0",
+          "@sveltejs/adapter-node": "^5.2.12",
+          "@sveltejs/kit": "^2.22.0",
+          "@sveltejs/vite-plugin-svelte": "^6.0.0",
+          "@tailwindcss/typography": "^0.5.15",
+          "@tailwindcss/vite": "^4.0.0",
+          "clsx": "^2.1.1",
+          "eslint": "^9.18.0",
+          "eslint-config-prettier": "^10.0.1",
+          "eslint-plugin-svelte": "^3.0.0",
+          "globals": "^16.0.0",
+          "prettier": "^3.4.2",
+          "prettier-plugin-svelte": "^3.3.3",
+          "prettier-plugin-tailwindcss": "^0.6.11",
+          "svelte": "^5.0.0",
+          "svelte-check": "^4.0.0",
+          "tailwind-merge": "^3.3.1",
+          "tailwind-variants": "^1.0.0",
+          "tailwindcss": "^4.0.0",
+          "tw-animate-css": "^1.3.8",
+          "typescript": "^5.0.0",
+          "typescript-eslint": "^8.20.0",
+          "vite": "^7.0.4"
+        },
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "esbuild"
+          ],
+          "ignoredBuiltDependencies": [
+            "@tailwindcss/oxide"
+          ]
+        },
+        "dependencies": {
+          "@types/three": "^0.180.0",
+          "three": "^0.180.0",
+          "three-stdlib": "^2.36.0"
+        }
+      },
+      "key_files": {
+        "src/lib/agents/types.ts": true,
+        "src/lib/agents/coordinator.ts": true,
+        "src/lib/agents/accessibility-evaluator.ts": true,
+        "src/routes/api/agents/coordinate/+server.ts": true
+      }
+    },
+    "data_analysis": {
+      "status": "success",
+      "analysis": {
+        "swarmaura": {
+          "data/visits.csv": {
+            "rows": 436,
+            "columns": 6,
+            "columns_list": [
+              "stop_id",
+              "weekday",
+              "hour",
+              "demand",
+              "access_score",
+              "service_min_actual"
+            ],
+            "sample_data": [
+              {
+                "stop_id": "S_A",
+                "weekday": 1,
+                "hour": 9,
+                "demand": 135,
+                "access_score": 0.6408352893231556,
+                "service_min_actual": 13.2
+              },
+              {
+                "stop_id": "S_A",
+                "weekday": 1,
+                "hour": 10,
+                "demand": 165,
+                "access_score": 0.6634723847659216,
+                "service_min_actual": 17.8
+              },
+              {
+                "stop_id": "S_A",
+                "weekday": 1,
+                "hour": 9,
+                "demand": 158,
+                "access_score": 0.7643874229796679,
+                "service_min_actual": 14.4
+              }
+            ]
+          },
+          "data/edges_obs.csv": {
+            "rows": 5500,
+            "columns": 13,
+            "columns_list": [
+              "src_id",
+              "dst_id",
+              "weekday",
+              "hour",
+              "osrm_min",
+              "observed_min",
+              "risk_i",
+              "risk_j",
+              "light_i",
+              "light_j",
+              "cong_i",
+              "cong_j",
+              "incident_ij"
+            ],
+            "sample_data": [
+              {
+                "src_id": "D",
+                "dst_id": "S_A",
+                "weekday": 2,
+                "hour": 18,
+                "osrm_min": 4.81,
+                "observed_min": 8.87,
+                "risk_i": 0.065,
+                "risk_j": 0.272,
+                "light_i": 0.627,
+                "light_j": 0.562,
+                "cong_i": 0.032,
+                "cong_j": 0.482,
+                "incident_ij": 0
+              },
+              {
+                "src_id": "D",
+                "dst_id": "S_B",
+                "weekday": 2,
+                "hour": 7,
+                "osrm_min": 17.44,
+                "observed_min": 55.07,
+                "risk_i": 0.624,
+                "risk_j": 0.333,
+                "light_i": 0.302,
+                "light_j": 0.705,
+                "cong_i": 0.407,
+                "cong_j": 0.555,
+                "incident_ij": 0
+              },
+              {
+                "src_id": "D",
+                "dst_id": "S_C",
+                "weekday": 2,
+                "hour": 17,
+                "osrm_min": 17.87,
+                "observed_min": 45.65,
+                "risk_i": 0.294,
+                "risk_j": 0.184,
+                "light_i": 0.624,
+                "light_j": 0.661,
+                "cong_i": 0.615,
+                "cong_j": 0.117,
+                "incident_ij": 0
+              }
+            ]
+          },
+          "data/assign_history.csv": {
+            "rows": 500,
+            "columns": 9,
+            "columns_list": [
+              "run_id",
+              "stop_id",
+              "vehicle_id",
+              "lat",
+              "lng",
+              "demand",
+              "priority",
+              "hour",
+              "weekday"
+            ],
+            "sample_data": [
+              {
+                "run_id": "r001",
+                "stop_id": "S_A",
+                "vehicle_id": "V2",
+                "lat": 42.37,
+                "lng": -71.05,
+                "demand": 150,
+                "priority": 1,
+                "hour": 11,
+                "weekday": 2
+              },
+              {
+                "run_id": "r001",
+                "stop_id": "S_B",
+                "vehicle_id": "V1",
+                "lat": 42.34,
+                "lng": -71.1,
+                "demand": 140,
+                "priority": 3,
+                "hour": 9,
+                "weekday": 0
+              },
+              {
+                "run_id": "r001",
+                "stop_id": "S_C",
+                "vehicle_id": "V1",
+                "lat": 42.39,
+                "lng": -71.02,
+                "demand": 145,
+                "priority": 2,
+                "hour": 11,
+                "weekday": 2
+              }
+            ]
+          },
+          "data/kg_nodes.csv": {
+            "rows": 11,
+            "columns": 5,
+            "columns_list": [
+              "id",
+              "type",
+              "lat",
+              "lng",
+              "features_json"
+            ],
+            "sample_data": [
+              {
+                "id": "D",
+                "type": "Depot",
+                "lat": 42.3601,
+                "lng": -71.0589,
+                "features_json": "{\"city\": \"Boston\", \"capacity\": 1000}"
+              },
+              {
+                "id": "S_A",
+                "type": "Stop",
+                "lat": 42.37,
+                "lng": -71.05,
+                "features_json": "{\"demand\": 150, \"access_score\": 0.72, \"priority\": 1}"
+              },
+              {
+                "id": "S_B",
+                "type": "Stop",
+                "lat": 42.34,
+                "lng": -71.1,
+                "features_json": "{\"demand\": 140, \"access_score\": 0.61, \"priority\": 3}"
+              }
+            ]
+          },
+          "data/kg_edges.csv": {
+            "rows": 74,
+            "columns": 4,
+            "columns_list": [
+              "src",
+              "dst",
+              "rel",
+              "weight"
+            ],
+            "sample_data": [
+              {
+                "src": "D",
+                "dst": "S_A",
+                "rel": "ROUTES_NEAR",
+                "weight": 1.0
+              },
+              {
+                "src": "D",
+                "dst": "S_B",
+                "rel": "ROUTES_NEAR",
+                "weight": 1.0
+              },
+              {
+                "src": "D",
+                "dst": "S_C",
+                "rel": "ROUTES_NEAR",
+                "weight": 1.0
+              }
+            ]
+          },
+          "evaluation": {
+            "file": "eval_report_1759569744.csv",
+            "rows": 100,
+            "columns": [
+              "idx",
+              "stops",
+              "vehicles",
+              "quick_distance_km",
+              "long_distance_km",
+              "greedy_distance_km",
+              "quick_served_rate",
+              "quick_on_time_rate",
+              "quick_dropped",
+              "quick_total_co2_kg",
+              "quick_runtime_sec",
+              "long_runtime_sec",
+              "opt_gap_percent",
+              "improv_vs_greedy_percent",
+              "quick_dropped_ids"
+            ],
+            "summary": {
+              "idx": {
+                "count": 100.0,
+                "mean": 50.5,
+                "std": 29.011491975882016,
+                "min": 1.0,
+                "25%": 25.75,
+                "50%": 50.5,
+                "75%": 75.25,
+                "max": 100.0
+              },
+              "stops": {
+                "count": 100.0,
+                "mean": 12.0,
+                "std": 0.0,
+                "min": 12.0,
+                "25%": 12.0,
+                "50%": 12.0,
+                "75%": 12.0,
+                "max": 12.0
+              },
+              "vehicles": {
+                "count": 100.0,
+                "mean": 2.0,
+                "std": 0.0,
+                "min": 2.0,
+                "25%": 2.0,
+                "50%": 2.0,
+                "75%": 2.0,
+                "max": 2.0
+              },
+              "quick_distance_km": {
+                "count": 100.0,
+                "mean": 45.7897,
+                "std": 12.030720311860893,
+                "min": 10.46,
+                "25%": 36.67,
+                "50%": 47.105,
+                "75%": 52.8025,
+                "max": 76.42
+              },
+              "long_distance_km": {
+                "count": 100.0,
+                "mean": 45.7897,
+                "std": 12.030720311860893,
+                "min": 10.46,
+                "25%": 36.67,
+                "50%": 47.105,
+                "75%": 52.8025,
+                "max": 76.42
+              },
+              "greedy_distance_km": {
+                "count": 100.0,
+                "mean": 110.56520000000002,
+                "std": 18.797004676492495,
+                "min": 61.73,
+                "25%": 99.465,
+                "50%": 110.72,
+                "75%": 123.5925,
+                "max": 159.45
+              },
+              "quick_served_rate": {
+                "count": 100.0,
+                "mean": 0.5124989999999999,
+                "std": 0.13472359394948855,
+                "min": 0.0833,
+                "25%": 0.4167,
+                "50%": 0.5,
+                "75%": 0.5833,
+                "max": 0.9167
+              },
+              "quick_on_time_rate": {
+                "count": 100.0,
+                "mean": 1.0,
+                "std": 0.0,
+                "min": 1.0,
+                "25%": 1.0,
+                "50%": 1.0,
+                "75%": 1.0,
+                "max": 1.0
+              },
+              "quick_dropped": {
+                "count": 100.0,
+                "mean": 5.85,
+                "std": 1.616674476707158,
+                "min": 1.0,
+                "25%": 5.0,
+                "50%": 6.0,
+                "75%": 7.0,
+                "max": 11.0
+              },
+              "quick_total_co2_kg": {
+                "count": 100.0,
+                "mean": 37.5481,
+                "std": 9.864887707665428,
+                "min": 8.58,
+                "25%": 30.067500000000003,
+                "50%": 38.625,
+                "75%": 43.3,
+                "max": 62.67
+              },
+              "quick_runtime_sec": {
+                "count": 100.0,
+                "mean": 0.16496000000000002,
+                "std": 0.039765199749417966,
+                "min": 0.09,
+                "25%": 0.14375,
+                "50%": 0.1555,
+                "75%": 0.1855,
+                "max": 0.292
+              },
+              "long_runtime_sec": {
+                "count": 100.0,
+                "mean": 0.16425,
+                "std": 0.042050805010370514,
+                "min": 0.09,
+                "25%": 0.14375,
+                "50%": 0.153,
+                "75%": 0.1825,
+                "max": 0.352
+              },
+              "opt_gap_percent": {
+                "count": 100.0,
+                "mean": 0.0,
+                "std": 0.0,
+                "min": 0.0,
+                "25%": 0.0,
+                "50%": 0.0,
+                "75%": 0.0,
+                "max": 0.0
+              },
+              "improv_vs_greedy_percent": {
+                "count": 100.0,
+                "mean": 57.89370000000001,
+                "std": 11.328698397602365,
+                "min": 31.24,
+                "25%": 49.2025,
+                "50%": 57.875,
+                "75%": 65.32249999999999,
+                "max": 86.56
+              }
+            }
+          }
+        },
+        "geographic_intelligence": {
+          "components": {
+            "$schema": "https://shadcn-svelte.com/schema.json",
+            "tailwind": {
+              "css": "src/app.css",
+              "baseColor": "zinc"
+            },
+            "aliases": {
+              "components": "$lib/components",
+              "utils": "$lib/utils",
+              "ui": "$lib/components/ui",
+              "hooks": "$lib/hooks",
+              "lib": "$lib"
+            },
+            "typescript": true,
+            "registry": "https://shadcn-svelte.com/registry"
+          }
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_tests": 4,
+    "passed_tests": 3,
+    "failed_tests": 1
+  }
+}

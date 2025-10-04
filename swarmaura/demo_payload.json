@@ -1,0 +1,26 @@
+{
+  "run_id": "demo-001",
+  "depot": { "id": "DEPOT", "lat": 42.3601, "lng": -71.0589 },
+  "vehicles": [
+    { "id": "T1", "capacity": 1200, "fuel_type": "diesel" },
+    { "id": "T2", "capacity": 900,  "fuel_type": "ev" }
+  ],
+  "stops": [
+    { "id": "C1",  "lat": 42.37, "lng": -71.05, "demand": 180, "priority": 3 },
+    { "id": "C2",  "lat": 42.34, "lng": -71.10, "demand": 120, "priority": 1 },
+    { "id": "C3",  "lat": 42.39, "lng": -71.02, "demand": 220, "priority": 2 },
+    { "id": "C4",  "lat": 42.33, "lng": -71.06, "demand": 160, "priority": 1 },
+    { "id": "C5",  "lat": 42.35, "lng": -71.12, "demand": 140, "priority": 2 },
+    { "id": "C6",  "lat": 42.41, "lng": -71.08, "demand": 200, "priority": 3 },
+    { "id": "C7",  "lat": 42.32, "lng": -71.03, "demand": 100, "priority": 1 },
+    { "id": "C8",  "lat": 42.38, "lng": -71.00, "demand": 180, "priority": 2 },
+    { "id": "C9",  "lat": 42.36, "lng": -71.15, "demand": 130, "priority": 1 },
+    { "id": "C10", "lat": 42.43, "lng": -71.10, "demand": 170, "priority": 2 },
+    { "id": "C11", "lat": 42.29, "lng": -71.06, "demand": 160, "priority": 1 },
+    { "id": "C12", "lat": 42.40, "lng": -71.12, "demand": 120, "priority": 2 },
+    { "id": "C13", "lat": 42.44, "lng": -71.02, "demand": 110, "priority": 1 },
+    { "id": "C14", "lat": 42.31, "lng": -71.09, "demand": 140, "priority": 2 },
+    { "id": "C15", "lat": 42.37, "lng": -71.13, "demand": 160, "priority": 3 }
+  ],
+  "speed_kmph": 35.0
+}

@@ -1,0 +1,12 @@
+id,type,lat,lng,features_json
+D,Depot,42.3601,-71.0589,"{""city"": ""Boston"", ""capacity"": 1000}"
+S_A,Stop,42.37,-71.05,"{""demand"": 150, ""access_score"": 0.72, ""priority"": 1}"
+S_B,Stop,42.34,-71.1,"{""demand"": 140, ""access_score"": 0.61, ""priority"": 3}"
+S_C,Stop,42.39,-71.02,"{""demand"": 145, ""access_score"": 0.55, ""priority"": 2}"
+S_D,Stop,42.33,-71.06,"{""demand"": 150, ""access_score"": 0.65, ""priority"": 2}"
+S_E,Stop,42.41,-71.03,"{""demand"": 140, ""access_score"": 0.7, ""priority"": 1}"
+S_F,Stop,42.35,-71.08,"{""demand"": 160, ""access_score"": 0.68, ""priority"": 1}"
+S_G,Stop,42.38,-71.04,"{""demand"": 135, ""access_score"": 0.58, ""priority"": 1}"
+S_H,Stop,42.36,-71.07,"{""demand"": 155, ""access_score"": 0.73, ""priority"": 3}"
+S_I,Stop,42.4,-71.01,"{""demand"": 145, ""access_score"": 0.62, ""priority"": 2}"
+S_J,Stop,42.32,-71.09,"{""demand"": 130, ""access_score"": 0.59, ""priority"": 2}"
