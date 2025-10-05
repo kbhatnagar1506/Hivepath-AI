@@ -745,8 +745,8 @@ def main():
     print("🚀 MAXIMUM CAPABILITY SYSTEM INITIALIZATION")
     print("=" * 60)
     
-    # Change to swarmaura directory
-    os.chdir("/Users/krishnabhatnagar/hackharvard/swarmaura")
+    # Change to hivepath-ai directory
+    os.chdir("/Users/krishnabhatnagar/hackharvard/hivepath-ai")
     
     # Initialize and run demonstration
     mcs = MaximumCapabilitySystem()
