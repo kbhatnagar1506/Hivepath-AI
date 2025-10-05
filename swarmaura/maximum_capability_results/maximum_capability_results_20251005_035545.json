@@ -1,0 +1,987 @@
+{
+  "timestamp": "2025-10-05T03:55:30.427004",
+  "capabilities": {
+    "service_time_gnn": {
+      "status": "operational",
+      "predictions": [
+        14.314972877502441,
+        13.872072219848633,
+        14.096426963806152,
+        14.316741943359375,
+        13.869799613952637
+      ],
+      "detailed_analysis": [
+        {
+          "location": "Back Bay Station",
+          "id": "S_A",
+          "predicted_time": 14.314972877502441,
+          "historical_avg": 8.579999999999998,
+          "demand": 150,
+          "access_score": 0.72,
+          "weather_risk": 0.2,
+          "traffic_risk": 0.4,
+          "peak_hour": 1.0,
+          "variance": 0.10960000000000003,
+          "confidence": 0.3315882427153328,
+          "factors": {
+            "demand_impact": 9.0,
+            "access_impact": 1.4000000000000001,
+            "weather_impact": 0.4,
+            "traffic_impact": 0.6000000000000001,
+            "peak_impact": 0.0
+          }
+        },
+        {
+          "location": "North End",
+          "id": "S_B",
+          "predicted_time": 13.872072219848633,
+          "historical_avg": 12.120000000000001,
+          "demand": 140,
+          "access_score": 0.61,
+          "weather_risk": 0.3,
+          "traffic_risk": 0.5,
+          "peak_hour": 1.0,
+          "variance": 0.18560000000000024,
+          "confidence": 0.8554395858210699,
+          "factors": {
+            "demand_impact": 8.4,
+            "access_impact": 1.9500000000000002,
+            "weather_impact": 0.6,
+            "traffic_impact": 0.75,
+            "peak_impact": 0.0
+          }
+        },
+        {
+          "location": "Harvard Square",
+          "id": "S_C",
+          "predicted_time": 14.096426963806152,
+          "historical_avg": 10.639999999999999,
+          "demand": 145,
+          "access_score": 0.55,
+          "weather_risk": 0.2,
+          "traffic_risk": 0.3,
+          "peak_hour": 1.0,
+          "variance": 0.10640000000000008,
+          "confidence": 0.6751478417475419,
+          "factors": {
+            "demand_impact": 8.7,
+            "access_impact": 2.25,
+            "weather_impact": 0.4,
+            "traffic_impact": 0.44999999999999996,
+            "peak_impact": 0.0
+          }
+        },
+        {
+          "location": "Beacon Hill",
+          "id": "S_D",
+          "predicted_time": 14.316741943359375,
+          "historical_avg": 9.120000000000001,
+          "demand": 150,
+          "access_score": 0.65,
+          "weather_risk": 0.2,
+          "traffic_risk": 0.4,
+          "peak_hour": 1.2,
+          "variance": 0.06559999999999994,
+          "confidence": 0.430181804456209,
+          "factors": {
+            "demand_impact": 9.0,
+            "access_impact": 1.75,
+            "weather_impact": 0.4,
+            "traffic_impact": 0.6000000000000001,
+            "peak_impact": 0.3999999999999999
+          }
+        },
+        {
+          "location": "South End",
+          "id": "S_E",
+          "predicted_time": 13.869799613952637,
+          "historical_avg": 7.639999999999999,
+          "demand": 140,
+          "access_score": 0.7,
+          "weather_risk": 0.1,
+          "traffic_risk": 0.2,
+          "peak_hour": 1.0,
+          "variance": 0.10639999999999991,
+          "confidence": 0.1845812023622201,
+          "factors": {
+            "demand_impact": 8.4,
+            "access_impact": 1.5000000000000002,
+            "weather_impact": 0.2,
+            "traffic_impact": 0.30000000000000004,
+            "peak_impact": 0.0
+          }
+        }
+      ],
+      "statistics": {
+        "avg_prediction": 14.094002723693848,
+        "avg_confidence": 0.49538773542047465,
+        "total_variance": 0.11472000000000002
+      }
+    },
+    "risk_shaper_gnn": {
+      "status": "operational",
+      "multipliers": [
+        [
+          0.0,
+          0.3212687373161316,
+          0.33332428336143494,
+          0.3092045783996582,
+          0.31402909755706787,
+          0.3129061460494995
+        ],
+        [
+          0.3124009370803833,
+          0.0,
+          0.32966190576553345,
+          0.30761995911598206,
+          0.31745392084121704,
+          0.3096635043621063
+        ],
+        [
+          0.3278861939907074,
+          0.3276747763156891,
+          0.0,
+          0.3133571743965149,
+          0.326709121465683,
+          0.3111572861671448
+        ],
+        [
+          0.3084860146045685,
+          0.3068178594112396,
+          0.3185165822505951,
+          0.0,
+          0.3068501055240631,
+          0.3004864454269409
+        ],
+        [
+          0.3193053901195526,
+          0.3175469934940338,
+          0.3182821571826935,
+          0.3054892420768738,
+          0.0,
+          0.3098888397216797
+        ],
+        [
+          0.314612478017807,
+          0.3130984604358673,
+          0.3247060179710388,
+          0.30140063166618347,
+          0.31236374378204346,
+          0.0
+        ]
+      ],
+      "risk_analysis": [
+        {
+          "src": "Downtown Boston Depot",
+          "dst": "Back Bay Station",
+          "base_time": 11.675046706052203,
+          "risk_multiplier": "0.32126874",
+          "adjusted_time": 15.425874219412457,
+          "time_increase": 3.750827513360253,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.3,
+            "src_light": 0.9,
+            "dst_light": 0.7,
+            "src_cong": 0.4,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "Downtown Boston Depot",
+          "dst": "North End",
+          "base_time": 16.912866864448674,
+          "risk_multiplier": "0.33332428",
+          "adjusted_time": 22.550336091628388,
+          "time_increase": 5.637469227179714,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.4,
+            "src_light": 0.9,
+            "dst_light": 0.6,
+            "src_cong": 0.4,
+            "dst_cong": 0.7
+          }
+        },
+        {
+          "src": "Downtown Boston Depot",
+          "dst": "Harvard Square",
+          "base_time": 12.25815278827968,
+          "risk_multiplier": "0.30920458",
+          "adjusted_time": 16.048429753138294,
+          "time_increase": 3.790276964858613,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.2,
+            "src_light": 0.9,
+            "dst_light": 0.8,
+            "src_cong": 0.4,
+            "dst_cong": 0.5
+          }
+        },
+        {
+          "src": "Downtown Boston Depot",
+          "dst": "Beacon Hill",
+          "base_time": 22.633828581423924,
+          "risk_multiplier": "0.3140291",
+          "adjusted_time": 29.741509345109847,
+          "time_increase": 7.107680763685924,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.3,
+            "src_light": 0.9,
+            "dst_light": 0.7,
+            "src_cong": 0.4,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "Downtown Boston Depot",
+          "dst": "South End",
+          "base_time": 8.819718716512694,
+          "risk_multiplier": "0.31290615",
+          "adjusted_time": 11.57946290933732,
+          "time_increase": 2.759744192824625,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.2,
+            "src_light": 0.9,
+            "dst_light": 0.9,
+            "src_cong": 0.4,
+            "dst_cong": 0.3
+          }
+        },
+        {
+          "src": "Back Bay Station",
+          "dst": "Downtown Boston Depot",
+          "base_time": 23.63810464520503,
+          "risk_multiplier": "0.31240094",
+          "adjusted_time": 31.022670687171242,
+          "time_increase": 7.384566041966213,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.3,
+            "src_light": 0.7,
+            "dst_light": 0.9,
+            "src_cong": 0.6,
+            "dst_cong": 0.4
+          }
+        },
+        {
+          "src": "Back Bay Station",
+          "dst": "North End",
+          "base_time": 15.755918925515566,
+          "risk_multiplier": "0.3296619",
+          "adjusted_time": 20.950045185588262,
+          "time_increase": 5.1941262600726965,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.4,
+            "src_light": 0.7,
+            "dst_light": 0.6,
+            "src_cong": 0.6,
+            "dst_cong": 0.7
+          }
+        },
+        {
+          "src": "Back Bay Station",
+          "dst": "Harvard Square",
+          "base_time": 7.2580232921917105,
+          "risk_multiplier": "0.30761996",
+          "adjusted_time": 9.49073612059857,
+          "time_increase": 2.232712828406859,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.2,
+            "src_light": 0.7,
+            "dst_light": 0.8,
+            "src_cong": 0.6,
+            "dst_cong": 0.5
+          }
+        },
+        {
+          "src": "Back Bay Station",
+          "dst": "Beacon Hill",
+          "base_time": 10.192435342293031,
+          "risk_multiplier": "0.31745392",
+          "adjusted_time": 13.428063904624546,
+          "time_increase": 3.235628562331515,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.3,
+            "src_light": 0.7,
+            "dst_light": 0.7,
+            "src_cong": 0.6,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "Back Bay Station",
+          "dst": "South End",
+          "base_time": 20.189237784824886,
+          "risk_multiplier": "0.3096635",
+          "adjusted_time": 26.441107907673608,
+          "time_increase": 6.251870122848722,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.2,
+            "src_light": 0.7,
+            "dst_light": 0.9,
+            "src_cong": 0.6,
+            "dst_cong": 0.3
+          }
+        },
+        {
+          "src": "North End",
+          "dst": "Downtown Boston Depot",
+          "base_time": 16.938566120229726,
+          "risk_multiplier": "0.3278862",
+          "adjusted_time": 22.492488097051794,
+          "time_increase": 5.553921976822068,
+          "risk_factors": {
+            "src_risk": 0.4,
+            "dst_risk": 0.3,
+            "src_light": 0.6,
+            "dst_light": 0.9,
+            "src_cong": 0.7,
+            "dst_cong": 0.4
+          }
+        },
+        {
+          "src": "North End",
+          "dst": "Back Bay Station",
+          "base_time": 8.256898157345432,
+          "risk_multiplier": "0.32767478",
+          "adjusted_time": 10.962475414115023,
+          "time_increase": 2.7055772567695904,
+          "risk_factors": {
+            "src_risk": 0.4,
+            "dst_risk": 0.3,
+            "src_light": 0.6,
+            "dst_light": 0.7,
+            "src_cong": 0.7,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "North End",
+          "dst": "Harvard Square",
+          "base_time": 9.66208992868757,
+          "risk_multiplier": "0.31335717",
+          "adjusted_time": 12.689775127506131,
+          "time_increase": 3.0276851988185616,
+          "risk_factors": {
+            "src_risk": 0.4,
+            "dst_risk": 0.2,
+            "src_light": 0.6,
+            "dst_light": 0.8,
+            "src_cong": 0.7,
+            "dst_cong": 0.5
+          }
+        },
+        {
+          "src": "North End",
+          "dst": "Beacon Hill",
+          "base_time": 9.10384674753149,
+          "risk_multiplier": "0.32670912",
+          "adjusted_time": 12.07815652037572,
+          "time_increase": 2.9743097728442294,
+          "risk_factors": {
+            "src_risk": 0.4,
+            "dst_risk": 0.3,
+            "src_light": 0.6,
+            "dst_light": 0.7,
+            "src_cong": 0.7,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "North End",
+          "dst": "South End",
+          "base_time": 23.41552258077885,
+          "risk_multiplier": "0.3111573",
+          "adjusted_time": 30.701433041199493,
+          "time_increase": 7.285910460420645,
+          "risk_factors": {
+            "src_risk": 0.4,
+            "dst_risk": 0.2,
+            "src_light": 0.6,
+            "dst_light": 0.9,
+            "src_cong": 0.7,
+            "dst_cong": 0.3
+          }
+        },
+        {
+          "src": "Harvard Square",
+          "dst": "Downtown Boston Depot",
+          "base_time": 10.590926767100175,
+          "risk_multiplier": "0.308486",
+          "adjusted_time": 13.858079556451754,
+          "time_increase": 3.267152789351579,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.3,
+            "src_light": 0.8,
+            "dst_light": 0.9,
+            "src_cong": 0.5,
+            "dst_cong": 0.4
+          }
+        },
+        {
+          "src": "Harvard Square",
+          "dst": "Back Bay Station",
+          "base_time": 11.432712980710386,
+          "risk_multiplier": "0.30681786",
+          "adjusted_time": 14.94047350471504,
+          "time_increase": 3.507760524004654,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.3,
+            "src_light": 0.8,
+            "dst_light": 0.7,
+            "src_cong": 0.5,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "Harvard Square",
+          "dst": "North End",
+          "base_time": 14.586756927983377,
+          "risk_multiplier": "0.31851658",
+          "adjusted_time": 19.232880890804832,
+          "time_increase": 4.646123962821456,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.4,
+            "src_light": 0.8,
+            "dst_light": 0.6,
+            "src_cong": 0.5,
+            "dst_cong": 0.7
+          }
+        },
+        {
+          "src": "Harvard Square",
+          "dst": "Beacon Hill",
+          "base_time": 11.928495682912455,
+          "risk_multiplier": "0.3068501",
+          "adjusted_time": 15.588755841957473,
+          "time_increase": 3.660260159045018,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.3,
+            "src_light": 0.8,
+            "dst_light": 0.7,
+            "src_cong": 0.5,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "Harvard Square",
+          "dst": "South End",
+          "base_time": 7.372388513112482,
+          "risk_multiplier": "0.30048645",
+          "adjusted_time": 9.587691331724063,
+          "time_increase": 2.2153028186115806,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.2,
+            "src_light": 0.8,
+            "dst_light": 0.9,
+            "src_cong": 0.5,
+            "dst_cong": 0.3
+          }
+        },
+        {
+          "src": "Beacon Hill",
+          "dst": "Downtown Boston Depot",
+          "base_time": 9.659181943787896,
+          "risk_multiplier": "0.3193054",
+          "adjusted_time": 12.74341080258483,
+          "time_increase": 3.0842288587969335,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.3,
+            "src_light": 0.7,
+            "dst_light": 0.9,
+            "src_cong": 0.6,
+            "dst_cong": 0.4
+          }
+        },
+        {
+          "src": "Beacon Hill",
+          "dst": "Back Bay Station",
+          "base_time": 9.612531311580355,
+          "risk_multiplier": "0.317547",
+          "adjusted_time": 12.664961729439959,
+          "time_increase": 3.052430417859604,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.3,
+            "src_light": 0.7,
+            "dst_light": 0.7,
+            "src_cong": 0.6,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "Beacon Hill",
+          "dst": "North End",
+          "base_time": 24.526958178450343,
+          "risk_multiplier": "0.31828216",
+          "adjusted_time": 32.33345133661722,
+          "time_increase": 7.80649315816688,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.4,
+            "src_light": 0.7,
+            "dst_light": 0.6,
+            "src_cong": 0.6,
+            "dst_cong": 0.7
+          }
+        },
+        {
+          "src": "Beacon Hill",
+          "dst": "Harvard Square",
+          "base_time": 10.329050912535527,
+          "risk_multiplier": "0.30548924",
+          "adjusted_time": 13.484464847179446,
+          "time_increase": 3.155413934643919,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.2,
+            "src_light": 0.7,
+            "dst_light": 0.8,
+            "src_cong": 0.6,
+            "dst_cong": 0.5
+          }
+        },
+        {
+          "src": "Beacon Hill",
+          "dst": "South End",
+          "base_time": 18.983473250267092,
+          "risk_multiplier": "0.30988884",
+          "adjusted_time": 24.866239749679906,
+          "time_increase": 5.8827664994128135,
+          "risk_factors": {
+            "src_risk": 0.3,
+            "dst_risk": 0.2,
+            "src_light": 0.7,
+            "dst_light": 0.9,
+            "src_cong": 0.6,
+            "dst_cong": 0.3
+          }
+        },
+        {
+          "src": "South End",
+          "dst": "Downtown Boston Depot",
+          "base_time": 11.571594980677194,
+          "risk_multiplier": "0.31461248",
+          "adjusted_time": 15.212163152166463,
+          "time_increase": 3.640568171489269,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.3,
+            "src_light": 0.9,
+            "dst_light": 0.9,
+            "src_cong": 0.3,
+            "dst_cong": 0.4
+          }
+        },
+        {
+          "src": "South End",
+          "dst": "Back Bay Station",
+          "base_time": 18.715207795624373,
+          "risk_multiplier": "0.31309846",
+          "adjusted_time": 24.574910543171708,
+          "time_increase": 5.859702747547335,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.3,
+            "src_light": 0.9,
+            "dst_light": 0.7,
+            "src_cong": 0.3,
+            "dst_cong": 0.6
+          }
+        },
+        {
+          "src": "South End",
+          "dst": "North End",
+          "base_time": 17.57794024161604,
+          "risk_multiplier": "0.32470602",
+          "adjusted_time": 23.285603221604067,
+          "time_increase": 5.707662979988026,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.4,
+            "src_light": 0.9,
+            "dst_light": 0.6,
+            "src_cong": 0.3,
+            "dst_cong": 0.7
+          }
+        },
+        {
+          "src": "South End",
+          "dst": "Harvard Square",
+          "base_time": 18.04989034746237,
+          "risk_multiplier": "0.30140063",
+          "adjusted_time": 23.490138699692874,
+          "time_increase": 5.440248352230505,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.2,
+            "src_light": 0.9,
+            "dst_light": 0.8,
+            "src_cong": 0.3,
+            "dst_cong": 0.5
+          }
+        },
+        {
+          "src": "South End",
+          "dst": "Beacon Hill",
+          "base_time": 19.62565272718869,
+          "risk_multiplier": "0.31236374",
+          "adjusted_time": 25.75599508721962,
+          "time_increase": 6.13034236003093,
+          "risk_factors": {
+            "src_risk": 0.2,
+            "dst_risk": 0.3,
+            "src_light": 0.9,
+            "dst_light": 0.7,
+            "src_cong": 0.3,
+            "dst_cong": 0.6
+          }
+        }
+      ],
+      "statistics": {
+        "avg_risk": "0.31507227",
+        "max_risk": "0.33332428",
+        "high_risk_routes": 30
+      }
+    },
+    "warmstart_clusterer": {
+      "status": "operational",
+      "initial_routes": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "clustering_analysis": [
+        {
+          "vehicle_id": "V2",
+          "vehicle_type": "van",
+          "capacity": 200,
+          "stops": 5,
+          "total_demand": 725,
+          "capacity_utilization": 3.625,
+          "avg_access_score": 0.6460000000000001,
+          "total_priority": 8,
+          "geographic_center": [
+            42.368,
+            -71.05199999999999
+          ],
+          "geographic_spread": 0.05556977595780013,
+          "stop_names": [
+            "Back Bay Station",
+            "North End",
+            "Harvard Square",
+            "Beacon Hill",
+            "South End"
+          ]
+        }
+      ],
+      "quality_metrics": {
+        "avg_utilization": 3.625,
+        "avg_spread": 0.05556977595780013,
+        "balanced_routes": 0
+      }
+    },
+    "complete_routing": {
+      "status": "operational",
+      "solve_time": 15.003569841384888,
+      "result": {
+        "ok": true,
+        "routes": [
+          {
+            "vehicle_id": "V1",
+            "stops": [
+              {
+                "node": 0,
+                "t_min": 0
+              },
+              {
+                "node": 3,
+                "t_min": 6
+              },
+              {
+                "node": 5,
+                "t_min": 19
+              }
+            ],
+            "distance_km": 6.98,
+            "drive_min": 9,
+            "load": 285,
+            "co2_kg": 5.73
+          },
+          {
+            "vehicle_id": "V2",
+            "stops": [
+              {
+                "node": 0,
+                "t_min": 0
+              }
+            ],
+            "distance_km": 0.0,
+            "drive_min": 0,
+            "load": 0,
+            "co2_kg": 0.0
+          },
+          {
+            "vehicle_id": "V3",
+            "stops": [
+              {
+                "node": 0,
+                "t_min": 0
+              },
+              {
+                "node": 4,
+                "t_min": 5
+              },
+              {
+                "node": 2,
+                "t_min": 19
+              }
+            ],
+            "distance_km": 6.82,
+            "drive_min": 10,
+            "load": 290,
+            "co2_kg": 5.59
+          },
+          {
+            "vehicle_id": "V4",
+            "stops": [
+              {
+                "node": 0,
+                "t_min": 0
+              },
+              {
+                "node": 1,
+                "t_min": 1
+              }
+            ],
+            "distance_km": 1.32,
+            "drive_min": 1,
+            "load": 150,
+            "co2_kg": 1.06
+          }
+        ],
+        "summary": {
+          "total_distance_km": 15.12,
+          "total_drive_min": 20,
+          "total_served_demand": 725,
+          "start_iso": "2025-10-05T07:55:30+00:00",
+          "dropped_allowed": true
+        },
+        "_telemetry": {
+          "time_limit_sec": 15,
+          "num_workers": 0,
+          "allow_drop": true,
+          "drop_penalty_per_priority": 5000,
+          "nodes": 5,
+          "vehicles": 4
+        }
+      },
+      "performance": {
+        "capacity_utilization": 65.9090909090909,
+        "vehicle_efficiency": 1.0,
+        "avg_route_length": 2.25
+      }
+    },
+    "environmental_intelligence": {
+      "status": "operational",
+      "weather": {
+        "temperature": -2.5,
+        "condition": "partly_cloudy",
+        "humidity": 65,
+        "wind_speed": 12,
+        "visibility": 15,
+        "precipitation": 0.1
+      },
+      "traffic": {
+        "overall_congestion": 0.3,
+        "incidents": 2,
+        "construction_zones": 1,
+        "rush_hour_multiplier": 1.4
+      },
+      "time_context": {
+        "current_hour": 14,
+        "current_weekday": 2,
+        "is_holiday": false,
+        "season": "winter"
+      },
+      "location_impacts": {
+        "S_A": {
+          "weather_risk": 0.2,
+          "traffic_risk": 0.4,
+          "lighting_score": 0.7,
+          "environmental_score": 83.0
+        },
+        "S_B": {
+          "weather_risk": 0.3,
+          "traffic_risk": 0.5,
+          "lighting_score": 0.6,
+          "environmental_score": 77.0
+        },
+        "S_C": {
+          "weather_risk": 0.2,
+          "traffic_risk": 0.3,
+          "lighting_score": 0.8,
+          "environmental_score": 86.0
+        },
+        "S_D": {
+          "weather_risk": 0.2,
+          "traffic_risk": 0.4,
+          "lighting_score": 0.7,
+          "environmental_score": 83.0
+        },
+        "S_E": {
+          "weather_risk": 0.1,
+          "traffic_risk": 0.2,
+          "lighting_score": 0.9,
+          "environmental_score": 92.0
+        }
+      }
+    },
+    "accessibility_analysis": {
+      "status": "operational",
+      "detailed_analysis": [
+        {
+          "location": "S_A",
+          "base_score": 72.0,
+          "feature_bonus": 25,
+          "sidewalk_bonus": 4.0,
+          "curb_bonus": 4,
+          "hazard_penalty": 10,
+          "final_score": 95.0,
+          "features": [
+            "elevator",
+            "ramp"
+          ],
+          "hazards": [
+            "construction_zone"
+          ],
+          "sidewalk_width": 2.0,
+          "curb_cuts": 2,
+          "parking_spaces": 20,
+          "loading_docks": 1,
+          "lighting_score": 0.7
+        },
+        {
+          "location": "S_B",
+          "base_score": 61.0,
+          "feature_bonus": 10,
+          "sidewalk_bonus": 3.0,
+          "curb_bonus": 2,
+          "hazard_penalty": 20,
+          "final_score": 56.0,
+          "features": [
+            "ramp"
+          ],
+          "hazards": [
+            "narrow_streets",
+            "pedestrian_heavy"
+          ],
+          "sidewalk_width": 1.5,
+          "curb_cuts": 1,
+          "parking_spaces": 8,
+          "loading_docks": 0,
+          "lighting_score": 0.6
+        },
+        {
+          "location": "S_C",
+          "base_score": 55.00000000000001,
+          "feature_bonus": 30,
+          "sidewalk_bonus": 6.0,
+          "curb_bonus": 10,
+          "hazard_penalty": 0,
+          "final_score": 100,
+          "features": [
+            "elevator",
+            "ramp",
+            "wide_doors"
+          ],
+          "hazards": [],
+          "sidewalk_width": 3.0,
+          "curb_cuts": 6,
+          "parking_spaces": 30,
+          "loading_docks": 2,
+          "lighting_score": 0.8
+        },
+        {
+          "location": "S_D",
+          "base_score": 65.0,
+          "feature_bonus": 10,
+          "sidewalk_bonus": 4.4,
+          "curb_bonus": 6,
+          "hazard_penalty": 10,
+          "final_score": 75.4,
+          "features": [
+            "ramp"
+          ],
+          "hazards": [
+            "steep_hills"
+          ],
+          "sidewalk_width": 2.2,
+          "curb_cuts": 3,
+          "parking_spaces": 15,
+          "loading_docks": 1,
+          "lighting_score": 0.7
+        },
+        {
+          "location": "S_E",
+          "base_score": 70.0,
+          "feature_bonus": 30,
+          "sidewalk_bonus": 5.6,
+          "curb_bonus": 10,
+          "hazard_penalty": 0,
+          "final_score": 100,
+          "features": [
+            "elevator",
+            "ramp",
+            "wide_doors"
+          ],
+          "hazards": [],
+          "sidewalk_width": 2.8,
+          "curb_cuts": 5,
+          "parking_spaces": 25,
+          "loading_docks": 2,
+          "lighting_score": 0.9
+        }
+      ],
+      "statistics": {
+        "avg_score": 85.28,
+        "excellent_locations": 3,
+        "poor_locations": 0
+      }
+    }
+  },
+  "performance_metrics": {},
+  "detailed_analysis": {}
+}

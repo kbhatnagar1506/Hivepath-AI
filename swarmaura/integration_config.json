@@ -1,0 +1,30 @@
+{
+  "frontend": {
+    "url": "https://fleet-flow-7189cccb.base44.app",
+    "port": 3000,
+    "api_base_url": "http://localhost:8000",
+    "endpoints": {
+      "optimize_routes": "/api/v1/optimize/routes",
+      "multi_location": "/api/v1/multi-location/routes",
+      "health": "/api/v1/health",
+      "metrics": "/api/v1/metrics"
+    }
+  },
+  "backend": {
+    "port": 8000,
+    "host": "0.0.0.0",
+    "cors_origins": [
+      "https://fleet-flow-7189cccb.base44.app",
+      "http://localhost:3000"
+    ],
+    "api_prefix": "/api/v1"
+  },
+  "integration": {
+    "unified_port": 8080,
+    "proxy_config": {
+      "frontend_path": "/",
+      "api_path": "/api",
+      "static_path": "/static"
+    }
+  }
+}

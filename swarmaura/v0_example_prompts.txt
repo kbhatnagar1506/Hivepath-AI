@@ -1,0 +1,217 @@
+# v0 Example Prompts for SwarmAura API
+
+## 🎯 PROMPT 1: Complete Fleet Management Dashboard
+
+Create a modern fleet management dashboard using data from http://localhost:8001/api/bulk/all
+
+The API returns:
+- 6 locations with coordinates, demand, accessibility scores, weather risk
+- 4 vehicles with capacity, capabilities, costs, fuel type
+- AI predictions for service times with confidence scores
+- Real-time analytics and performance metrics
+- Environmental data (weather, traffic, lighting)
+
+Build a responsive dashboard with:
+- Interactive map showing all locations with markers
+- Vehicle status cards displaying capabilities and costs
+- Analytics overview with key metrics and charts
+- AI prediction display with confidence indicators
+- Real-time status indicators and health checks
+- Modern UI with Tailwind CSS and dark/light mode
+- Mobile-responsive design
+- Loading states and error handling
+
+## 🎯 PROMPT 2: Route Optimization Interface
+
+Build a route optimization interface using:
+
+Data API: http://localhost:8001/api/bulk/all
+
+Features needed:
+- Interactive map with location markers and route lines
+- Vehicle assignment display with capacity utilization
+- Performance metrics dashboard
+- Real-time optimization controls
+- Mobile responsive design
+- Drag-and-drop vehicle assignment
+- Route editing capabilities
+- Cost analysis display
+
+Use modern React components with Tailwind CSS.
+
+## 🎯 PROMPT 3: Analytics & AI Dashboard
+
+Create an analytics dashboard with:
+
+Data sources:
+- http://localhost:8001/api/analytics/overview
+- http://localhost:8001/api/predictions/service-times
+- http://localhost:8001/api/environmental/weather
+- http://localhost:8001/api/accessibility
+
+Display:
+- System metrics cards (locations, vehicles, demand, utilization)
+- Performance charts and graphs
+- AI prediction confidence scores with visual indicators
+- Weather impact analysis with icons
+- Accessibility scores with progress bars
+- Real-time status indicators
+- Export functionality for reports
+
+## 🎯 PROMPT 4: Mobile Fleet App
+
+Build a mobile-first fleet management app using:
+
+API: http://localhost:8001/api/bulk/all
+
+Mobile features:
+- Bottom navigation with icons
+- Swipe gestures for navigation
+- Pull-to-refresh for data updates
+- Offline support with cached data
+- Touch-friendly UI elements
+- Push notification placeholders
+
+Screens needed:
+- Dashboard overview with key metrics
+- Vehicle list with status indicators
+- Interactive location map
+- Analytics with charts
+- Settings and configuration
+- AI predictions screen
+
+## 🎯 PROMPT 5: Admin Control Panel
+
+Create an admin panel for fleet management with:
+
+Data sources:
+- http://localhost:8001/api/locations
+- http://localhost:8001/api/vehicles
+- http://localhost:8001/api/analytics/overview
+- http://localhost:8001/api/predictions/service-times
+
+Admin features:
+- Data tables with sorting, filtering, and pagination
+- CRUD operations for locations and vehicles
+- Bulk actions for multiple selections
+- Export functionality (CSV, PDF)
+- User management interface
+- System settings and configuration
+- Audit logs and activity tracking
+- Real-time monitoring dashboard
+
+## 🎯 PROMPT 6: Real-time Monitoring Dashboard
+
+Build a real-time monitoring dashboard with:
+
+API: http://localhost:8001/api/bulk/all
+
+Features:
+- Live data updates every 30 seconds
+- WebSocket-like real-time indicators
+- Alert system for critical events
+- Performance monitoring charts
+- System health indicators
+- Location tracking with live updates
+- Vehicle status monitoring
+- AI prediction accuracy tracking
+
+## 🎯 PROMPT 7: Accessibility-Focused Interface
+
+Create an accessibility-focused fleet management interface using:
+
+Data API: http://localhost:8001/api/accessibility
+
+Features:
+- High contrast mode
+- Screen reader compatibility
+- Keyboard navigation support
+- Large text options
+- Voice control integration
+- Accessibility score visualization
+- Barrier-free route planning
+- Inclusive design principles
+
+## 🎯 PROMPT 8: Environmental Impact Dashboard
+
+Build an environmental impact dashboard with:
+
+Data sources:
+- http://localhost:8001/api/environmental/weather
+- http://localhost:8001/api/environmental/traffic
+- http://localhost:8001/api/vehicles (for fuel type analysis)
+
+Display:
+- Carbon footprint calculations
+- Weather impact on routes
+- Traffic congestion analysis
+- Fuel efficiency metrics
+- Environmental risk indicators
+- Sustainability recommendations
+- Green route optimization
+- Impact reduction strategies
+
+## 🎯 PROMPT 9: Simple Status Board
+
+Create a simple status board for fleet operations using:
+
+API: http://localhost:8001/api/bulk/all
+
+Simple features:
+- Large, clear status indicators
+- Color-coded vehicle status
+- Location status overview
+- Key metrics display
+- Alert notifications
+- Minimal, clean design
+- Easy to read from distance
+- Quick status updates
+
+## 🎯 PROMPT 10: Advanced AI Dashboard
+
+Build an advanced AI-powered dashboard with:
+
+Data sources:
+- http://localhost:8001/api/predictions/service-times
+- http://localhost:8001/api/predictions/risk-assessment
+- http://localhost:8001/api/analytics/overview
+
+AI features:
+- Machine learning model visualization
+- Prediction accuracy tracking
+- Confidence score analysis
+- Risk assessment displays
+- AI recommendation engine
+- Pattern recognition insights
+- Predictive analytics charts
+- Model performance metrics
+
+## 🔧 TECHNICAL NOTES FOR v0:
+
+1. **API Base URL**: http://localhost:8001
+2. **CORS**: Enabled for all origins
+3. **Response Format**: JSON with status, count, data, timestamp
+4. **Error Handling**: Include try-catch blocks
+5. **Loading States**: Show loading indicators
+6. **Mobile First**: Design for mobile, then desktop
+7. **Accessibility**: Include ARIA labels and keyboard navigation
+8. **Performance**: Use React hooks for data fetching
+9. **Styling**: Tailwind CSS for consistent design
+10. **Real-time**: Consider polling for live updates
+
+## 📱 QUICK COPY-PASTE PROMPTS:
+
+### Minimal Dashboard:
+```
+Create a fleet management dashboard using http://localhost:8001/api/bulk/all with a map, vehicle cards, and analytics. Use Tailwind CSS and make it mobile responsive.
+```
+
+### Full Featured App:
+```
+Build a comprehensive fleet management app with http://localhost:8001/api/bulk/all including interactive maps, AI predictions, real-time updates, and admin controls. Use modern React patterns and Tailwind CSS.
+```
+
+### Mobile App:
+```
+Create a mobile fleet management app using http://localhost:8001/api/bulk/all with bottom navigation, swipe gestures, and touch-friendly UI. Include location tracking and vehicle status monitoring.
+```
