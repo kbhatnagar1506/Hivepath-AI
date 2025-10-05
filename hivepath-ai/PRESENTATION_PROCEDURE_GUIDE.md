@@ -15,19 +15,60 @@
 
 ## 🛠️ **Pre-Presentation Setup**
 
-### **Technical Setup Checklist:**
-```bash
-# 1. Ensure all systems are running
-cd /Users/krishnabhatnagar/hackharvard/hivepath-ai
-python3 system_capabilities.py  # Verify system works
-python3 presentation_demo.py    # Test presentation demo
+### **10-Step Demo Checklist:**
 
-# 2. Prepare demo environment
-# - Terminal window ready with commands
-# - Browser tabs open for dashboard
-# - Backup slides prepared
-# - Timer visible on screen
+**✅ Step 1: System Verification**
+```bash
+cd /Users/krishnabhatnagar/hackharvard/hivepath-ai
+python3 system_capabilities.py  # Verify all 6 AI models work
 ```
+
+**✅ Step 2: Demo Preparation**
+```bash
+python3 presentation_demo.py    # Test presentation demo runs smoothly
+```
+
+**✅ Step 3: Environment Setup**
+- Terminal window ready with commands
+- Browser tabs open for dashboard
+- Backup slides prepared
+- Timer visible on screen
+
+**✅ Step 4: Visual Preparation**
+- HivePath logo displayed
+- Key metrics visible: "23% cost reduction, 94% on-time delivery"
+- System architecture diagram ready
+
+**✅ Step 5: Judge Engagement Setup**
+- Questions prepared for interaction
+- Backup explanations ready
+- Contact information available
+
+**✅ Step 6: Technical Backup**
+- Screenshots of demo results saved
+- Code snippets prepared for walkthrough
+- Performance metrics documented
+
+**✅ Step 7: Timing Preparation**
+- 22-minute timer set
+- Section timing rehearsed
+- Q&A time allocated
+
+**✅ Step 8: Demo Flow Practice**
+- Opening hook rehearsed
+- Problem demonstration practiced
+- Solution architecture explained
+
+**✅ Step 9: Interactive Elements Ready**
+- Judge engagement questions prepared
+- Technical deep-dive responses ready
+- Business impact numbers memorized
+
+**✅ Step 10: Final Check**
+- All systems operational
+- Demo runs without errors
+- Backup plans in place
+- Ready to present!
 
 ### **Judge Engagement Strategy:**
 - **Visual Impact**: Use emojis, diagrams, and live demos
@@ -234,17 +275,41 @@ echo "Performance: 2.3s processing, 94.7% accuracy"
 
 ## 🎮 **Live Demo Sequence (8-12 minutes)**
 
-### **Demo Setup (8-9 minutes)**
+### **10-Step Live Demo Execution Checklist:**
 
-**Step 1: System Initialization (60 seconds)**
-**Script:**
-> "Now let me show you HivePath AI in action. I'll run our comprehensive system demonstration."
+**✅ Step 1: Demo Introduction (30 seconds)**
+**Script:** "Now let me show you HivePath AI in action. I'll run our comprehensive system demonstration."
 
-**Demo Command:**
+**✅ Step 2: Navigate to Directory (10 seconds)**
 ```bash
 cd /Users/krishnabhatnagar/hackharvard/hivepath-ai
+```
+
+**✅ Step 3: Start Demo Command (10 seconds)**
+```bash
 python3 presentation_demo.py
 ```
+
+**✅ Step 4: AI Models Demonstration (60 seconds)**
+**Commentary:** "Watch as our 6 AI models initialize and start making predictions..."
+
+**✅ Step 5: Swarm Intelligence Activation (60 seconds)**
+**Commentary:** "Our swarm intelligence network is now coordinating 6 distributed agents..."
+
+**✅ Step 6: Real-Time Data Integration (60 seconds)**
+**Commentary:** "See how we integrate weather, traffic, and accessibility data in real-time..."
+
+**✅ Step 7: Optimization Engine (60 seconds)**
+**Commentary:** "OR-Tools is now solving the multi-objective optimization problem..."
+
+**✅ Step 8: Results Analysis (60 seconds)**
+**Commentary:** "Let me highlight the key results: 89% efficiency, 23% cost savings..."
+
+**✅ Step 9: Performance Metrics (60 seconds)**
+**Commentary:** "Our system achieved 94.2% accuracy in service time prediction..."
+
+**✅ Step 10: Demo Conclusion (30 seconds)**
+**Script:** "This demonstrates HivePath AI's complete capabilities in action."
 
 **Step 2: Real-Time Commentary (4 minutes)**
 **Script:**
