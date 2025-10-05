@@ -167,3 +167,6 @@ async def batch_analyze_locations(requests: List[AnalyzeReq], max_concurrent: in
     
     tasks = [analyze_with_semaphore(req) for req in requests]
     return await asyncio.gather(*tasks)
+
+
+

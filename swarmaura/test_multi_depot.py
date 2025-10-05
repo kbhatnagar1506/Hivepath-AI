@@ -142,8 +142,7 @@ def test_multi_depot_routing():
             vehicles=test_data["vehicles"],
             time_limit_sec=test_data["config"]["time_limit_sec"],
             drop_penalty_per_priority=test_data["config"]["drop_penalty_per_priority"],
-            use_access_scores=test_data["config"]["use_access_scores"],
-            use_google_maps=test_data["config"]["use_google_maps"]
+            use_access_scores=test_data["config"]["use_access_scores"]
         )
         
         solve_time = time.time() - start_time

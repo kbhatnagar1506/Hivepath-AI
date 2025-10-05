@@ -280,3 +280,5 @@ def _parse_time_to_minutes(time_str: str) -> int:
         return h * 60 + m
     except:
         return 0
+
+

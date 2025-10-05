@@ -2,7 +2,6 @@ from typing import List, Dict, Any, Tuple, Optional
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 from datetime import datetime, timezone
 import math
-import numpy as np
 
 CO2_KG_PER_KM = {"diesel":0.82, "gas":0.75, "ev":0.12, "default":0.80}
 
@@ -89,42 +88,7 @@ def solve_vrp(
                               (all_nodes[j]["lat"], all_nodes[j]["lng"]))
             dist_km[i][j] = d
             time_min[i][j] = max(1, int((d / max(1e-6, speed_kmph)) * 60))
-    
-    # Risk Shaper: Adjust time matrix based on edge risk factors
-    try:
-        from .risk_shaper import risk_shaper_singleton
-        
-        # Prepare stop order and features
-        stops_order = [depot["id"]] + [s["id"] for s in stops]
-        hour, weekday = datetime.now().hour, datetime.now().weekday()
-        
-        # Build simple per-stop features (from stops or defaults)
-        features = {}
-        for s in stops:
-            features[s["id"]] = {
-                "risk": s.get("risk", 0.5),
-                "light": s.get("lighting", 0.5), 
-                "cong": s.get("congestion", 0.5)
-            }
-        features[depot["id"]] = {"risk": 0.4, "light": 0.7, "cong": 0.5}
-        
-        # Apply risk shaping
-        M = risk_shaper_singleton.shape(stops_order, time_min, hour, weekday, features)
-        time_min = (np.array(time_min) * (1.0 + M)).tolist()
-        
-    except ImportError:
-        # Fallback if risk shaper not available
-        pass
 
-    # ML Service Time Prediction (if not already provided)
-    if any("service_min" not in s for s in stops):
-        try:
-            from .solver_hooks import enrich_service_times
-            stops = enrich_service_times(stops)
-        except ImportError:
-            # Fallback if ML integration not available
-            pass
-    
     # Demands & per-node service time
     demand = [0] + [int(s.get("demand",0)) for s in stops]
     service_time = [0] + [int(stops[k].get("service_min", default_service_min)) for k in range(len(stops))]
@@ -203,15 +167,6 @@ def solve_vrp(
         if debug_log:
             params.log_search = True
 
-    # Warm-Start Clusterer: Generate initial routes if not provided
-    if not initial_routes:
-        try:
-            from .warmstart import warmstart_singleton
-            initial_routes = warmstart_singleton.build_initial_routes(depot, stops, vehicles)
-        except ImportError:
-            # Fallback if warm-start not available
-            pass
-    
     # Try warm start if provided
     assignment = None
     if initial_routes:

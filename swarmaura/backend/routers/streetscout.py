@@ -73,3 +73,4 @@ async def scan_radius(req: ScanRadiusReq) -> List[AnalyzeResp]:
         return await batch_analyze_locations(locations, max_concurrent=8)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Radius scan failed: {str(e)}")
+

@@ -103,3 +103,6 @@ async def enrich_stops_with_access(stops: List[Dict[str, Any]],
                                  headings: Optional[List[int]] = None) -> List[Dict[str, Any]]:
     """Convenience function to enrich stops with access analysis."""
     return await access_enricher.enrich_stops(stops, headings)
+
+
+

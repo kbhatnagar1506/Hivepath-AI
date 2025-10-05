@@ -88,8 +88,7 @@ def test_water_crossing_routing():
             vehicles=trucks,
             time_limit_sec=30,
             drop_penalty_per_priority=2000,
-            use_access_scores=True,
-            use_google_maps=False  # Our API
+            use_access_scores=True
         )
         haversine_time = time.time() - start_time
         
@@ -143,8 +142,7 @@ def test_water_crossing_routing():
             vehicles=trucks,
             time_limit_sec=30,
             drop_penalty_per_priority=2000,
-            use_access_scores=True,
-            use_google_maps=True  # Google Maps API
+            use_access_scores=True
         )
         google_time = time.time() - start_time
         
