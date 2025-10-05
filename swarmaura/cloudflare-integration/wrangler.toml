@@ -1,0 +1,50 @@
+# Cloudflare Workers Configuration for HivePath AI
+name = "hivepath-ai-worker"
+main = "worker-ai-inference.js"
+compatibility_date = "2024-01-15"
+
+# AI Model Bindings
+[[ai]]
+binding = "AI"
+
+# Environment Variables
+[vars]
+ENVIRONMENT = "production"
+API_VERSION = "v1"
+
+# R2 Bucket Bindings for ML Models and Data
+[[r2_buckets]]
+binding = "ML_MODELS"
+bucket_name = "hivepath-ai-models"
+
+[[r2_buckets]]
+binding = "KNOWLEDGE_GRAPH"
+bucket_name = "hivepath-ai-knowledge-graph"
+
+[[r2_buckets]]
+binding = "ANALYTICS_DATA"
+bucket_name = "hivepath-ai-analytics"
+
+# KV Namespace for caching
+[[kv_namespaces]]
+binding = "CACHE"
+id = "your-kv-namespace-id"
+preview_id = "your-preview-kv-namespace-id"
+
+# Durable Objects for real-time data
+[[durable_objects.bindings]]
+name = "REALTIME_DATA"
+class_name = "RealtimeDataStore"
+
+# Routes for the worker
+routes = [
+  { pattern = "hivepath-ai.your-domain.com/ai/*", zone_name = "your-domain.com" }
+]
+
+# Cron triggers for periodic tasks
+[triggers]
+crons = ["0 */6 * * *"]  # Every 6 hours
+
+# Limits
+[limits]
+cpu_ms = 50000  # 50 seconds CPU time
