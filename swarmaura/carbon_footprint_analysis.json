@@ -1,0 +1,402 @@
+{
+  "timestamp": "2025-10-04T09:13:26.885527",
+  "analysis_type": "carbon_footprint_cost_savings",
+  "scenarios_tested": 3,
+  "summary": {
+    "total_co2_saved": 0.0,
+    "total_cost_saved": 0.0,
+    "total_distance_saved": 0.0,
+    "co2_improvement_percent": 0.0,
+    "cost_improvement_percent": 0.0,
+    "distance_improvement_percent": 0.0
+  },
+  "detailed_results": [
+    {
+      "scenario": "Small Fleet (3 vehicles, 8 stops)",
+      "baseline": {
+        "label": "Baseline",
+        "active_routes": 2,
+        "total_distance_km": 14.81,
+        "total_drive_time_min": 18,
+        "total_co2_kg": 12.14,
+        "total_fuel_consumed_l": 1.26,
+        "total_fuel_cost_usd": 1.51,
+        "total_driver_cost_usd": 7.5,
+        "total_maintenance_cost_usd": 2.22,
+        "total_cost_usd": 11.23,
+        "route_details": [
+          {
+            "vehicle_id": "V2",
+            "vehicle_name": "Truck Beta",
+            "fuel_type": "diesel",
+            "stops": 4,
+            "distance_km": 7.06,
+            "drive_time_min": 8,
+            "co2_kg": 5.79,
+            "fuel_consumed_l": 0.6,
+            "fuel_cost_usd": 0.72,
+            "driver_cost_usd": 3.33,
+            "maintenance_cost_usd": 1.06,
+            "total_cost_usd": 5.11
+          },
+          {
+            "vehicle_id": "V3",
+            "vehicle_name": "Truck Gamma",
+            "fuel_type": "diesel",
+            "stops": 4,
+            "distance_km": 7.75,
+            "drive_time_min": 10,
+            "co2_kg": 6.35,
+            "fuel_consumed_l": 0.66,
+            "fuel_cost_usd": 0.79,
+            "driver_cost_usd": 4.17,
+            "maintenance_cost_usd": 1.16,
+            "total_cost_usd": 6.12
+          }
+        ]
+      },
+      "ml_enhanced": {
+        "label": "ML-Enhanced",
+        "active_routes": 2,
+        "total_distance_km": 14.81,
+        "total_drive_time_min": 18,
+        "total_co2_kg": 12.14,
+        "total_fuel_consumed_l": 1.26,
+        "total_fuel_cost_usd": 1.51,
+        "total_driver_cost_usd": 7.5,
+        "total_maintenance_cost_usd": 2.22,
+        "total_cost_usd": 11.23,
+        "route_details": [
+          {
+            "vehicle_id": "V2",
+            "vehicle_name": "Truck Beta",
+            "fuel_type": "diesel",
+            "stops": 4,
+            "distance_km": 7.06,
+            "drive_time_min": 8,
+            "co2_kg": 5.79,
+            "fuel_consumed_l": 0.6,
+            "fuel_cost_usd": 0.72,
+            "driver_cost_usd": 3.33,
+            "maintenance_cost_usd": 1.06,
+            "total_cost_usd": 5.11
+          },
+          {
+            "vehicle_id": "V3",
+            "vehicle_name": "Truck Gamma",
+            "fuel_type": "diesel",
+            "stops": 4,
+            "distance_km": 7.75,
+            "drive_time_min": 10,
+            "co2_kg": 6.35,
+            "fuel_consumed_l": 0.66,
+            "fuel_cost_usd": 0.79,
+            "driver_cost_usd": 4.17,
+            "maintenance_cost_usd": 1.16,
+            "total_cost_usd": 6.12
+          }
+        ]
+      },
+      "improvements": {
+        "total_distance_km": 0.0,
+        "total_drive_time_min": 0.0,
+        "total_co2_kg": 0.0,
+        "total_fuel_consumed_l": 0.0,
+        "total_fuel_cost_usd": 0.0,
+        "total_driver_cost_usd": 0.0,
+        "total_maintenance_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      "solve_times": {
+        "baseline": 15.01354694366455,
+        "ml_enhanced": 15.001646041870117
+      }
+    },
+    {
+      "scenario": "Medium Fleet (5 vehicles, 15 stops)",
+      "baseline": {
+        "label": "Baseline",
+        "active_routes": 4,
+        "total_distance_km": 50.37,
+        "total_drive_time_min": 72,
+        "total_co2_kg": 41.3,
+        "total_fuel_consumed_l": 4.28,
+        "total_fuel_cost_usd": 5.13,
+        "total_driver_cost_usd": 30.0,
+        "total_maintenance_cost_usd": 7.55,
+        "total_cost_usd": 42.69,
+        "route_details": [
+          {
+            "vehicle_id": "V2",
+            "vehicle_name": "Truck B",
+            "fuel_type": "diesel",
+            "stops": 4,
+            "distance_km": 20.34,
+            "drive_time_min": 29,
+            "co2_kg": 16.68,
+            "fuel_consumed_l": 1.73,
+            "fuel_cost_usd": 2.07,
+            "driver_cost_usd": 12.08,
+            "maintenance_cost_usd": 3.05,
+            "total_cost_usd": 17.21
+          },
+          {
+            "vehicle_id": "V3",
+            "vehicle_name": "Truck C",
+            "fuel_type": "diesel",
+            "stops": 4,
+            "distance_km": 18.95,
+            "drive_time_min": 28,
+            "co2_kg": 15.54,
+            "fuel_consumed_l": 1.61,
+            "fuel_cost_usd": 1.93,
+            "driver_cost_usd": 11.67,
+            "maintenance_cost_usd": 2.84,
+            "total_cost_usd": 16.44
+          },
+          {
+            "vehicle_id": "V4",
+            "vehicle_name": "Truck D",
+            "fuel_type": "diesel",
+            "stops": 6,
+            "distance_km": 9.53,
+            "drive_time_min": 13,
+            "co2_kg": 7.81,
+            "fuel_consumed_l": 0.81,
+            "fuel_cost_usd": 0.97,
+            "driver_cost_usd": 5.42,
+            "maintenance_cost_usd": 1.43,
+            "total_cost_usd": 7.82
+          },
+          {
+            "vehicle_id": "V5",
+            "vehicle_name": "Truck E",
+            "fuel_type": "diesel",
+            "stops": 1,
+            "distance_km": 1.55,
+            "drive_time_min": 2,
+            "co2_kg": 1.27,
+            "fuel_consumed_l": 0.13,
+            "fuel_cost_usd": 0.16,
+            "driver_cost_usd": 0.83,
+            "maintenance_cost_usd": 0.23,
+            "total_cost_usd": 1.22
+          }
+        ]
+      },
+      "ml_enhanced": {
+        "label": "ML-Enhanced",
+        "active_routes": 4,
+        "total_distance_km": 50.37,
+        "total_drive_time_min": 72,
+        "total_co2_kg": 41.3,
+        "total_fuel_consumed_l": 4.28,
+        "total_fuel_cost_usd": 5.13,
+        "total_driver_cost_usd": 30.0,
+        "total_maintenance_cost_usd": 7.55,
+        "total_cost_usd": 42.69,
+        "route_details": [
+          {
+            "vehicle_id": "V2",
+            "vehicle_name": "Truck B",
+            "fuel_type": "diesel",
+            "stops": 4,
+            "distance_km": 20.34,
+            "drive_time_min": 29,
+            "co2_kg": 16.68,
+            "fuel_consumed_l": 1.73,
+            "fuel_cost_usd": 2.07,
+            "driver_cost_usd": 12.08,
+            "maintenance_cost_usd": 3.05,
+            "total_cost_usd": 17.21
+          },
+          {
+            "vehicle_id": "V3",
+            "vehicle_name": "Truck C",
+            "fuel_type": "diesel",
+            "stops": 4,
+            "distance_km": 18.95,
+            "drive_time_min": 28,
+            "co2_kg": 15.54,
+            "fuel_consumed_l": 1.61,
+            "fuel_cost_usd": 1.93,
+            "driver_cost_usd": 11.67,
+            "maintenance_cost_usd": 2.84,
+            "total_cost_usd": 16.44
+          },
+          {
+            "vehicle_id": "V4",
+            "vehicle_name": "Truck D",
+            "fuel_type": "diesel",
+            "stops": 6,
+            "distance_km": 9.53,
+            "drive_time_min": 13,
+            "co2_kg": 7.81,
+            "fuel_consumed_l": 0.81,
+            "fuel_cost_usd": 0.97,
+            "driver_cost_usd": 5.42,
+            "maintenance_cost_usd": 1.43,
+            "total_cost_usd": 7.82
+          },
+          {
+            "vehicle_id": "V5",
+            "vehicle_name": "Truck E",
+            "fuel_type": "diesel",
+            "stops": 1,
+            "distance_km": 1.55,
+            "drive_time_min": 2,
+            "co2_kg": 1.27,
+            "fuel_consumed_l": 0.13,
+            "fuel_cost_usd": 0.16,
+            "driver_cost_usd": 0.83,
+            "maintenance_cost_usd": 0.23,
+            "total_cost_usd": 1.22
+          }
+        ]
+      },
+      "improvements": {
+        "total_distance_km": 0.0,
+        "total_drive_time_min": 0.0,
+        "total_co2_kg": 0.0,
+        "total_fuel_consumed_l": 0.0,
+        "total_fuel_cost_usd": 0.0,
+        "total_driver_cost_usd": 0.0,
+        "total_maintenance_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      "solve_times": {
+        "baseline": 15.00353193283081,
+        "ml_enhanced": 15.005988121032715
+      }
+    },
+    {
+      "scenario": "Mixed Fleet (4 vehicles, 12 stops)",
+      "baseline": {
+        "label": "Baseline",
+        "active_routes": 3,
+        "total_distance_km": 41.96,
+        "total_drive_time_min": 59,
+        "total_co2_kg": 15.56,
+        "total_fuel_consumed_l": 1.82,
+        "total_fuel_cost_usd": 2.11,
+        "total_driver_cost_usd": 24.58,
+        "total_maintenance_cost_usd": 6.29,
+        "total_cost_usd": 32.98,
+        "route_details": [
+          {
+            "vehicle_id": "V2",
+            "vehicle_name": "Electric Truck",
+            "fuel_type": "electric",
+            "stops": 4,
+            "distance_km": 16.2,
+            "drive_time_min": 23,
+            "co2_kg": 1.94,
+            "fuel_consumed_l": 0.0,
+            "fuel_cost_usd": 0.0,
+            "driver_cost_usd": 9.58,
+            "maintenance_cost_usd": 2.43,
+            "total_cost_usd": 12.01
+          },
+          {
+            "vehicle_id": "V3",
+            "vehicle_name": "Hybrid Truck",
+            "fuel_type": "hybrid",
+            "stops": 5,
+            "distance_km": 19.0,
+            "drive_time_min": 27,
+            "co2_kg": 8.55,
+            "fuel_consumed_l": 1.14,
+            "fuel_cost_usd": 1.33,
+            "driver_cost_usd": 11.25,
+            "maintenance_cost_usd": 2.85,
+            "total_cost_usd": 15.43
+          },
+          {
+            "vehicle_id": "V4",
+            "vehicle_name": "Gas Truck",
+            "fuel_type": "gasoline",
+            "stops": 3,
+            "distance_km": 6.76,
+            "drive_time_min": 9,
+            "co2_kg": 5.07,
+            "fuel_consumed_l": 0.68,
+            "fuel_cost_usd": 0.78,
+            "driver_cost_usd": 3.75,
+            "maintenance_cost_usd": 1.01,
+            "total_cost_usd": 5.54
+          }
+        ]
+      },
+      "ml_enhanced": {
+        "label": "ML-Enhanced",
+        "active_routes": 3,
+        "total_distance_km": 41.96,
+        "total_drive_time_min": 59,
+        "total_co2_kg": 15.56,
+        "total_fuel_consumed_l": 1.82,
+        "total_fuel_cost_usd": 2.11,
+        "total_driver_cost_usd": 24.58,
+        "total_maintenance_cost_usd": 6.29,
+        "total_cost_usd": 32.98,
+        "route_details": [
+          {
+            "vehicle_id": "V2",
+            "vehicle_name": "Electric Truck",
+            "fuel_type": "electric",
+            "stops": 4,
+            "distance_km": 16.2,
+            "drive_time_min": 23,
+            "co2_kg": 1.94,
+            "fuel_consumed_l": 0.0,
+            "fuel_cost_usd": 0.0,
+            "driver_cost_usd": 9.58,
+            "maintenance_cost_usd": 2.43,
+            "total_cost_usd": 12.01
+          },
+          {
+            "vehicle_id": "V3",
+            "vehicle_name": "Hybrid Truck",
+            "fuel_type": "hybrid",
+            "stops": 5,
+            "distance_km": 19.0,
+            "drive_time_min": 27,
+            "co2_kg": 8.55,
+            "fuel_consumed_l": 1.14,
+            "fuel_cost_usd": 1.33,
+            "driver_cost_usd": 11.25,
+            "maintenance_cost_usd": 2.85,
+            "total_cost_usd": 15.43
+          },
+          {
+            "vehicle_id": "V4",
+            "vehicle_name": "Gas Truck",
+            "fuel_type": "gasoline",
+            "stops": 3,
+            "distance_km": 6.76,
+            "drive_time_min": 9,
+            "co2_kg": 5.07,
+            "fuel_consumed_l": 0.68,
+            "fuel_cost_usd": 0.78,
+            "driver_cost_usd": 3.75,
+            "maintenance_cost_usd": 1.01,
+            "total_cost_usd": 5.54
+          }
+        ]
+      },
+      "improvements": {
+        "total_distance_km": 0.0,
+        "total_drive_time_min": 0.0,
+        "total_co2_kg": 0.0,
+        "total_fuel_consumed_l": 0.0,
+        "total_fuel_cost_usd": 0.0,
+        "total_driver_cost_usd": 0.0,
+        "total_maintenance_cost_usd": 0.0,
+        "total_cost_usd": 0.0
+      },
+      "solve_times": {
+        "baseline": 15.001622915267944,
+        "ml_enhanced": 15.002195835113525
+      }
+    }
+  ]
+}

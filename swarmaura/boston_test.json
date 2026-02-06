@@ -1,0 +1,142 @@
+{
+  "run_id": "boston-test-001",
+  "locations": [
+    {
+      "id": "DEPOT_BACK_BAY",
+      "lat": 42.3503,
+      "lng": -71.0750,
+      "location_type": "depot",
+      "name": "Back Bay Station"
+    },
+    {
+      "id": "PICKUP_FANEUIL",
+      "lat": 42.3601,
+      "lng": -71.0589,
+      "location_type": "pickup",
+      "demand": 200,
+      "priority": 3,
+      "time_window": {"start": "09:00:00", "end": "11:00:00"},
+      "service_min": 15,
+      "name": "Faneuil Hall Marketplace"
+    },
+    {
+      "id": "DELIVERY_NORTH_END",
+      "lat": 42.3647,
+      "lng": -71.0542,
+      "location_type": "delivery",
+      "demand": -200,
+      "priority": 3,
+      "time_window": {"start": "12:00:00", "end": "14:00:00"},
+      "service_min": 10,
+      "name": "North End"
+    },
+    {
+      "id": "PICKUP_QUINCY_MARKET",
+      "lat": 42.3601,
+      "lng": -71.0589,
+      "location_type": "pickup",
+      "demand": 150,
+      "priority": 2,
+      "time_window": {"start": "10:00:00", "end": "13:00:00"},
+      "service_min": 12,
+      "name": "Quincy Market"
+    },
+    {
+      "id": "DELIVERY_BEACON_HILL",
+      "lat": 42.3568,
+      "lng": -71.0706,
+      "location_type": "delivery",
+      "demand": -150,
+      "priority": 2,
+      "time_window": {"start": "14:00:00", "end": "16:00:00"},
+      "service_min": 8,
+      "name": "Beacon Hill"
+    },
+    {
+      "id": "SERVICE_FENWAY",
+      "lat": 42.3467,
+      "lng": -71.0972,
+      "location_type": "service",
+      "demand": 0,
+      "priority": 1,
+      "time_window": {"start": "11:00:00", "end": "15:00:00"},
+      "service_min": 30,
+      "name": "Fenway Park Area"
+    },
+    {
+      "id": "SERVICE_HAYMARKET",
+      "lat": 42.3636,
+      "lng": -71.0582,
+      "location_type": "service",
+      "demand": 0,
+      "priority": 2,
+      "time_window": {"start": "08:00:00", "end": "12:00:00"},
+      "service_min": 20,
+      "name": "Haymarket"
+    },
+    {
+      "id": "PICKUP_CHINATOWN",
+      "lat": 42.3495,
+      "lng": -71.0624,
+      "location_type": "pickup",
+      "demand": 180,
+      "priority": 2,
+      "time_window": {"start": "13:00:00", "end": "16:00:00"},
+      "service_min": 15,
+      "name": "Chinatown"
+    },
+    {
+      "id": "DELIVERY_SOUTH_END",
+      "lat": 42.3431,
+      "lng": -71.0726,
+      "location_type": "delivery",
+      "demand": -180,
+      "priority": 2,
+      "time_window": {"start": "17:00:00", "end": "19:00:00"},
+      "service_min": 12,
+      "name": "South End"
+    },
+    {
+      "id": "SERVICE_CASTLE_ISLAND",
+      "lat": 42.3383,
+      "lng": -71.0103,
+      "location_type": "service",
+      "demand": 0,
+      "priority": 1,
+      "time_window": {"start": "14:00:00", "end": "18:00:00"},
+      "service_min": 25,
+      "name": "Castle Island"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "TRUCK_1",
+      "capacity": 1200,
+      "fuel_type": "diesel",
+      "allowed_location_types": ["pickup", "delivery", "service"],
+      "name": "Delivery Truck 1"
+    },
+    {
+      "id": "VAN_1",
+      "capacity": 800,
+      "fuel_type": "ev",
+      "allowed_location_types": ["pickup", "delivery", "service"],
+      "name": "Electric Van 1"
+    },
+    {
+      "id": "SERVICE_VAN",
+      "capacity": 600,
+      "fuel_type": "ev",
+      "allowed_location_types": ["service"],
+      "name": "Service Van"
+    }
+  ],
+  "pickup_delivery_pairs": [
+    {"pickup": "PICKUP_FANEUIL", "delivery": "DELIVERY_NORTH_END"},
+    {"pickup": "PICKUP_QUINCY_MARKET", "delivery": "DELIVERY_BEACON_HILL"},
+    {"pickup": "PICKUP_CHINATOWN", "delivery": "DELIVERY_SOUTH_END"}
+  ],
+  "speed_kmph": 25.0,
+  "preset": "pickup_delivery",
+  "time_limit_sec": 6
+}

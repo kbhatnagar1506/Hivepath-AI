@@ -1,0 +1,2 @@
+idx,stops,vehicles,quick_distance_km,long_distance_km,greedy_distance_km,quick_served_rate,quick_on_time_rate,quick_dropped,quick_total_co2_kg,quick_runtime_sec,long_runtime_sec,opt_gap_percent,improv_vs_greedy_percent
+1,5,1,14.24,14.24,46.87,0.4,1.0,3,11.67,2.004,4.001,0.0,69.62
