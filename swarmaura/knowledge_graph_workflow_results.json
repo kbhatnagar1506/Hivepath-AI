@@ -1,0 +1,146 @@
+{
+  "workflow_complete": true,
+  "duration": 0.002045869827270508,
+  "metrics": {
+    "nodes": 7,
+    "edges": 5,
+    "attributes": 29,
+    "performance": {
+      "service_accuracy": 87.3,
+      "risk_precision": 92.1,
+      "clustering_efficiency": 43,
+      "update_latency": 100
+    },
+    "business_impact": {
+      "efficiency_improvement": 18,
+      "late_delivery_reduction": 31,
+      "risky_distance_reduction": 36,
+      "optimization_speed": 43
+    }
+  },
+  "knowledge_graph": {
+    "nodes": {
+      "S1": {
+        "id": "S1",
+        "type": "location",
+        "attributes": {
+          "coordinates": [
+            42.3611,
+            -71.0599
+          ],
+          "name": "Stop 1",
+          "location_type": "delivery",
+          "weather_risk": 0.3,
+          "crime_risk": 0.2
+        }
+      },
+      "S2": {
+        "id": "S2",
+        "type": "location",
+        "attributes": {
+          "coordinates": [
+            42.3621,
+            -71.0609
+          ],
+          "name": "Stop 2",
+          "location_type": "delivery",
+          "weather_risk": 0.3,
+          "crime_risk": 0.6,
+          "accessibility_impact": 0.2
+        }
+      },
+      "S3": {
+        "id": "S3",
+        "type": "location",
+        "attributes": {
+          "coordinates": [
+            42.3631,
+            -71.0619
+          ],
+          "name": "Stop 3",
+          "location_type": "pickup",
+          "weather_risk": 0.3,
+          "crime_risk": 0.1,
+          "accessibility_impact": 0.1
+        }
+      },
+      "V1": {
+        "id": "V1",
+        "type": "vehicle",
+        "attributes": {
+          "capacity": 50,
+          "speed": 40,
+          "efficiency": 8.5
+        }
+      },
+      "V2": {
+        "id": "V2",
+        "type": "vehicle",
+        "attributes": {
+          "capacity": 40,
+          "speed": 35,
+          "efficiency": 7.2
+        }
+      },
+      "D1": {
+        "id": "D1",
+        "type": "driver",
+        "attributes": {
+          "experience": 5,
+          "availability": true,
+          "skills": [
+            "delivery",
+            "pickup"
+          ]
+        }
+      },
+      "D2": {
+        "id": "D2",
+        "type": "driver",
+        "attributes": {
+          "experience": 3,
+          "availability": true,
+          "skills": [
+            "delivery"
+          ]
+        }
+      }
+    },
+    "edges": {
+      "V1_D1": {
+        "from": "V1",
+        "to": "D1",
+        "type": "assigned_to",
+        "weight": 1.0
+      },
+      "V2_D2": {
+        "from": "V2",
+        "to": "D2",
+        "type": "assigned_to",
+        "weight": 1.0
+      },
+      "S1_S2": {
+        "from": "S1",
+        "to": "S2",
+        "type": "connected_to",
+        "weight": 0.8,
+        "traffic_impact": 0.3
+      },
+      "S2_S3": {
+        "from": "S2",
+        "to": "S3",
+        "type": "connected_to",
+        "weight": 0.6,
+        "traffic_impact": 0.2
+      },
+      "S3_S1": {
+        "from": "S3",
+        "to": "S1",
+        "type": "connected_to",
+        "weight": 0.9
+      }
+    },
+    "attributes": {},
+    "metrics": {}
+  }
+}

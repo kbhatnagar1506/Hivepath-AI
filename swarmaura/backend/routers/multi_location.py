@@ -245,3 +245,5 @@ async def optimize_multi_depot_routes(req: MultiLocationRequest):
     """
     req.preset = "multi_depot"
     return await optimize_multi_location_routes(req)
+
+

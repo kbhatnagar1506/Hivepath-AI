@@ -1,0 +1,1529 @@
+{
+  "extraction_summary": {
+    "timestamp": "2025-10-04T16:58:02.058177",
+    "total_locations": 6,
+    "total_vehicles": 4,
+    "total_routes": 4,
+    "data_quality": {
+      "completeness": 100.0,
+      "consistency": 95.0,
+      "accuracy": 92.0,
+      "timeliness": 98.0
+    },
+    "performance_metrics": {
+      "extraction_time": 10.034343957901001,
+      "data_volume": 24322,
+      "model_performance": {
+        "service_time_gnn": "operational",
+        "risk_shaper_gnn": "operational",
+        "warmstart_clusterer": "operational",
+        "ortools_solver": "operational"
+      },
+      "system_efficiency": {
+        "extraction_speed": "high",
+        "data_processing": "efficient",
+        "model_integration": "seamless",
+        "overall_performance": "excellent"
+      }
+    }
+  },
+  "detailed_data": {
+    "locations": [
+      {
+        "basic_info": {
+          "id": "D",
+          "name": "Downtown Boston Depot",
+          "type": "depot",
+          "coordinates": {
+            "lat": 42.3601,
+            "lng": -71.0589
+          }
+        },
+        "service_info": {
+          "demand": 0,
+          "priority": 1,
+          "service_min": 5,
+          "time_window": {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        },
+        "accessibility_info": {
+          "access_score": 0.95,
+          "features": [],
+          "hazards": [],
+          "sidewalk_width": 2.5,
+          "curb_cuts": 4,
+          "parking_spaces": 50,
+          "loading_docks": 3,
+          "lighting_score": 0.9
+        },
+        "environmental_info": {
+          "weather_risk": 0.1,
+          "traffic_risk": 0.2,
+          "peak_hour": 1.0,
+          "crime_risk": 0.3,
+          "congestion_score": 0.4
+        },
+        "historical_info": {
+          "historical_service_times": [
+            4.5,
+            5.2,
+            4.8,
+            5.1,
+            4.9
+          ],
+          "historical_avg": 7.0,
+          "visit_frequency": 1.0,
+          "last_visit": "2024-01-01"
+        },
+        "geographic_info": {
+          "neighborhood": "Unknown",
+          "zip_code": "Unknown",
+          "elevation": 0,
+          "terrain_type": "flat"
+        }
+      },
+      {
+        "basic_info": {
+          "id": "S_A",
+          "name": "Back Bay Station",
+          "type": "stop",
+          "coordinates": {
+            "lat": 42.37,
+            "lng": -71.05
+          }
+        },
+        "service_info": {
+          "demand": 150,
+          "priority": 2,
+          "service_min": 5,
+          "time_window": {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        },
+        "accessibility_info": {
+          "access_score": 0.72,
+          "features": [],
+          "hazards": [
+            "construction_zone"
+          ],
+          "sidewalk_width": 2.0,
+          "curb_cuts": 2,
+          "parking_spaces": 20,
+          "loading_docks": 1,
+          "lighting_score": 0.7
+        },
+        "environmental_info": {
+          "weather_risk": 0.2,
+          "traffic_risk": 0.4,
+          "peak_hour": 1.0,
+          "crime_risk": 0.3,
+          "congestion_score": 0.6
+        },
+        "historical_info": {
+          "historical_service_times": [
+            8.2,
+            9.1,
+            8.5,
+            8.8,
+            8.3
+          ],
+          "historical_avg": 7.0,
+          "visit_frequency": 1.0,
+          "last_visit": "2024-01-01"
+        },
+        "geographic_info": {
+          "neighborhood": "Unknown",
+          "zip_code": "Unknown",
+          "elevation": 0,
+          "terrain_type": "flat"
+        }
+      },
+      {
+        "basic_info": {
+          "id": "S_B",
+          "name": "North End",
+          "type": "stop",
+          "coordinates": {
+            "lat": 42.34,
+            "lng": -71.1
+          }
+        },
+        "service_info": {
+          "demand": 140,
+          "priority": 1,
+          "service_min": 5,
+          "time_window": {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        },
+        "accessibility_info": {
+          "access_score": 0.61,
+          "features": [],
+          "hazards": [
+            "narrow_streets",
+            "pedestrian_heavy"
+          ],
+          "sidewalk_width": 1.5,
+          "curb_cuts": 1,
+          "parking_spaces": 8,
+          "loading_docks": 0,
+          "lighting_score": 0.6
+        },
+        "environmental_info": {
+          "weather_risk": 0.3,
+          "traffic_risk": 0.5,
+          "peak_hour": 1.0,
+          "crime_risk": 0.4,
+          "congestion_score": 0.7
+        },
+        "historical_info": {
+          "historical_service_times": [
+            11.5,
+            12.8,
+            11.9,
+            12.3,
+            12.1
+          ],
+          "historical_avg": 7.0,
+          "visit_frequency": 1.0,
+          "last_visit": "2024-01-01"
+        },
+        "geographic_info": {
+          "neighborhood": "Unknown",
+          "zip_code": "Unknown",
+          "elevation": 0,
+          "terrain_type": "flat"
+        }
+      },
+      {
+        "basic_info": {
+          "id": "S_C",
+          "name": "Harvard Square",
+          "type": "stop",
+          "coordinates": {
+            "lat": 42.39,
+            "lng": -71.02
+          }
+        },
+        "service_info": {
+          "demand": 145,
+          "priority": 2,
+          "service_min": 5,
+          "time_window": {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        },
+        "accessibility_info": {
+          "access_score": 0.55,
+          "features": [],
+          "hazards": [],
+          "sidewalk_width": 3.0,
+          "curb_cuts": 6,
+          "parking_spaces": 30,
+          "loading_docks": 2,
+          "lighting_score": 0.8
+        },
+        "environmental_info": {
+          "weather_risk": 0.2,
+          "traffic_risk": 0.3,
+          "peak_hour": 1.0,
+          "crime_risk": 0.2,
+          "congestion_score": 0.5
+        },
+        "historical_info": {
+          "historical_service_times": [
+            10.2,
+            11.1,
+            10.6,
+            10.9,
+            10.4
+          ],
+          "historical_avg": 7.0,
+          "visit_frequency": 1.0,
+          "last_visit": "2024-01-01"
+        },
+        "geographic_info": {
+          "neighborhood": "Unknown",
+          "zip_code": "Unknown",
+          "elevation": 0,
+          "terrain_type": "flat"
+        }
+      },
+      {
+        "basic_info": {
+          "id": "S_D",
+          "name": "Beacon Hill",
+          "type": "stop",
+          "coordinates": {
+            "lat": 42.33,
+            "lng": -71.06
+          }
+        },
+        "service_info": {
+          "demand": 150,
+          "priority": 1,
+          "service_min": 5,
+          "time_window": {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        },
+        "accessibility_info": {
+          "access_score": 0.65,
+          "features": [],
+          "hazards": [
+            "steep_hills"
+          ],
+          "sidewalk_width": 2.2,
+          "curb_cuts": 3,
+          "parking_spaces": 15,
+          "loading_docks": 1,
+          "lighting_score": 0.7
+        },
+        "environmental_info": {
+          "weather_risk": 0.2,
+          "traffic_risk": 0.4,
+          "peak_hour": 1.0,
+          "crime_risk": 0.3,
+          "congestion_score": 0.6
+        },
+        "historical_info": {
+          "historical_service_times": [
+            8.8,
+            9.5,
+            9.1,
+            9.3,
+            8.9
+          ],
+          "historical_avg": 7.0,
+          "visit_frequency": 1.0,
+          "last_visit": "2024-01-01"
+        },
+        "geographic_info": {
+          "neighborhood": "Unknown",
+          "zip_code": "Unknown",
+          "elevation": 0,
+          "terrain_type": "flat"
+        }
+      },
+      {
+        "basic_info": {
+          "id": "S_E",
+          "name": "South End",
+          "type": "stop",
+          "coordinates": {
+            "lat": 42.41,
+            "lng": -71.03
+          }
+        },
+        "service_info": {
+          "demand": 140,
+          "priority": 2,
+          "service_min": 5,
+          "time_window": {
+            "start": "09:00",
+            "end": "17:00"
+          }
+        },
+        "accessibility_info": {
+          "access_score": 0.7,
+          "features": [],
+          "hazards": [],
+          "sidewalk_width": 2.8,
+          "curb_cuts": 5,
+          "parking_spaces": 25,
+          "loading_docks": 2,
+          "lighting_score": 0.9
+        },
+        "environmental_info": {
+          "weather_risk": 0.1,
+          "traffic_risk": 0.2,
+          "peak_hour": 1.0,
+          "crime_risk": 0.2,
+          "congestion_score": 0.3
+        },
+        "historical_info": {
+          "historical_service_times": [
+            7.2,
+            8.1,
+            7.6,
+            7.9,
+            7.4
+          ],
+          "historical_avg": 7.0,
+          "visit_frequency": 1.0,
+          "last_visit": "2024-01-01"
+        },
+        "geographic_info": {
+          "neighborhood": "Unknown",
+          "zip_code": "Unknown",
+          "elevation": 0,
+          "terrain_type": "flat"
+        }
+      }
+    ],
+    "vehicles": [
+      {
+        "basic_info": {
+          "id": "V1",
+          "type": "truck",
+          "capacity": 400,
+          "fuel_type": "diesel",
+          "year": 2020
+        },
+        "capabilities": {
+          "features": [
+            "lift_gate",
+            "refrigeration",
+            "hazmat"
+          ],
+          "max_weight": 2000,
+          "max_volume": 10,
+          "refrigeration": true,
+          "hazmat": true,
+          "lift_gate": true
+        },
+        "performance": {
+          "avg_speed_kmph": 40,
+          "fuel_efficiency": 8.5,
+          "maintenance_cost_per_km": 0.15,
+          "driver_required": true
+        },
+        "constraints": {
+          "max_daily_hours": 10,
+          "max_daily_distance": 500,
+          "rest_required": true,
+          "special_licenses": []
+        },
+        "costs": {
+          "hourly_rate": 25.0,
+          "fuel_cost_per_liter": 1.5,
+          "insurance_cost": 200.0,
+          "depreciation_rate": 0.15
+        }
+      },
+      {
+        "basic_info": {
+          "id": "V2",
+          "type": "van",
+          "capacity": 200,
+          "fuel_type": "gasoline",
+          "year": 2020
+        },
+        "capabilities": {
+          "features": [
+            "lift_gate"
+          ],
+          "max_weight": 1000,
+          "max_volume": 10,
+          "refrigeration": false,
+          "hazmat": false,
+          "lift_gate": true
+        },
+        "performance": {
+          "avg_speed_kmph": 40,
+          "fuel_efficiency": 8.5,
+          "maintenance_cost_per_km": 0.15,
+          "driver_required": true
+        },
+        "constraints": {
+          "max_daily_hours": 10,
+          "max_daily_distance": 500,
+          "rest_required": true,
+          "special_licenses": []
+        },
+        "costs": {
+          "hourly_rate": 25.0,
+          "fuel_cost_per_liter": 1.5,
+          "insurance_cost": 200.0,
+          "depreciation_rate": 0.15
+        }
+      },
+      {
+        "basic_info": {
+          "id": "V3",
+          "type": "truck",
+          "capacity": 350,
+          "fuel_type": "diesel",
+          "year": 2020
+        },
+        "capabilities": {
+          "features": [
+            "lift_gate",
+            "refrigeration"
+          ],
+          "max_weight": 1800,
+          "max_volume": 10,
+          "refrigeration": true,
+          "hazmat": false,
+          "lift_gate": true
+        },
+        "performance": {
+          "avg_speed_kmph": 40,
+          "fuel_efficiency": 8.5,
+          "maintenance_cost_per_km": 0.15,
+          "driver_required": true
+        },
+        "constraints": {
+          "max_daily_hours": 10,
+          "max_daily_distance": 500,
+          "rest_required": true,
+          "special_licenses": []
+        },
+        "costs": {
+          "hourly_rate": 25.0,
+          "fuel_cost_per_liter": 1.5,
+          "insurance_cost": 200.0,
+          "depreciation_rate": 0.15
+        }
+      },
+      {
+        "basic_info": {
+          "id": "V4",
+          "type": "van",
+          "capacity": 150,
+          "fuel_type": "electric",
+          "year": 2020
+        },
+        "capabilities": {
+          "features": [],
+          "max_weight": 800,
+          "max_volume": 10,
+          "refrigeration": false,
+          "hazmat": false,
+          "lift_gate": false
+        },
+        "performance": {
+          "avg_speed_kmph": 40,
+          "fuel_efficiency": 8.5,
+          "maintenance_cost_per_km": 0.15,
+          "driver_required": true
+        },
+        "constraints": {
+          "max_daily_hours": 10,
+          "max_daily_distance": 500,
+          "rest_required": true,
+          "special_licenses": []
+        },
+        "costs": {
+          "hourly_rate": 25.0,
+          "fuel_cost_per_liter": 1.5,
+          "insurance_cost": 200.0,
+          "depreciation_rate": 0.15
+        }
+      }
+    ],
+    "environmental": {
+      "weather": {
+        "current_conditions": {
+          "temperature": -2.5,
+          "condition": "partly_cloudy",
+          "humidity": 65,
+          "wind_speed": 12,
+          "wind_direction": "N/A",
+          "visibility": 15,
+          "precipitation": 0.1,
+          "pressure": 1013.25,
+          "uv_index": 0
+        },
+        "forecast": {
+          "next_3_hours": {},
+          "next_24_hours": {},
+          "weekly_outlook": {}
+        },
+        "alerts": {
+          "weather_warnings": [],
+          "advisory_level": "normal"
+        }
+      },
+      "traffic": {
+        "current_conditions": {
+          "overall_congestion": 0.3,
+          "incidents": 2,
+          "construction_zones": 1,
+          "rush_hour_multiplier": 1.4,
+          "average_speed": 30
+        },
+        "route_specific": {
+          "main_arteries": {},
+          "highway_conditions": {},
+          "local_streets": {}
+        },
+        "predictions": {
+          "peak_hours": [
+            7,
+            8,
+            17,
+            18
+          ],
+          "expected_delays": {},
+          "alternative_routes": []
+        }
+      },
+      "time_context": {
+        "current": {
+          "timestamp": "2025-10-04T16:58:02.058262",
+          "current_hour": 14,
+          "current_weekday": 2,
+          "is_holiday": false,
+          "season": "winter"
+        },
+        "business_hours": {
+          "peak_delivery_hours": [
+            9,
+            10,
+            11,
+            14,
+            15,
+            16
+          ],
+          "off_hours": [
+            22,
+            23,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "weekend_patterns": {}
+        }
+      }
+    },
+    "service_predictions": [
+      {
+        "location_id": "S_A",
+        "location_name": "Back Bay Station",
+        "model_info": {
+          "model_type": "gnn",
+          "prediction": 14.314972877502441,
+          "confidence": 0.3315882427153328,
+          "factors": {
+            "demand_impact": 9.0,
+            "access_impact": 1.4000000000000001,
+            "weather_impact": 0.4,
+            "traffic_impact": 0.6000000000000001,
+            "peak_impact": 0.0,
+            "historical_baseline": 8.579999999999998
+          },
+          "input_features": {
+            "demand": 150,
+            "access_score": 0.72,
+            "weather_risk": 0.2,
+            "traffic_risk": 0.4,
+            "peak_hour": 1.0
+          }
+        }
+      },
+      {
+        "location_id": "S_B",
+        "location_name": "North End",
+        "model_info": {
+          "model_type": "gnn",
+          "prediction": 13.872072219848633,
+          "confidence": 0.8554395858210699,
+          "factors": {
+            "demand_impact": 8.4,
+            "access_impact": 1.9500000000000002,
+            "weather_impact": 0.6,
+            "traffic_impact": 0.75,
+            "peak_impact": 0.0,
+            "historical_baseline": 12.120000000000001
+          },
+          "input_features": {
+            "demand": 140,
+            "access_score": 0.61,
+            "weather_risk": 0.3,
+            "traffic_risk": 0.5,
+            "peak_hour": 1.0
+          }
+        }
+      },
+      {
+        "location_id": "S_C",
+        "location_name": "Harvard Square",
+        "model_info": {
+          "model_type": "gnn",
+          "prediction": 14.096426963806152,
+          "confidence": 0.6751478417475419,
+          "factors": {
+            "demand_impact": 8.7,
+            "access_impact": 2.25,
+            "weather_impact": 0.4,
+            "traffic_impact": 0.44999999999999996,
+            "peak_impact": 0.0,
+            "historical_baseline": 10.639999999999999
+          },
+          "input_features": {
+            "demand": 145,
+            "access_score": 0.55,
+            "weather_risk": 0.2,
+            "traffic_risk": 0.3,
+            "peak_hour": 1.0
+          }
+        }
+      },
+      {
+        "location_id": "S_D",
+        "location_name": "Beacon Hill",
+        "model_info": {
+          "model_type": "gnn",
+          "prediction": 14.316741943359375,
+          "confidence": 0.430181804456209,
+          "factors": {
+            "demand_impact": 9.0,
+            "access_impact": 1.75,
+            "weather_impact": 0.4,
+            "traffic_impact": 0.6000000000000001,
+            "peak_impact": 0.3999999999999999,
+            "historical_baseline": 9.120000000000001
+          },
+          "input_features": {
+            "demand": 150,
+            "access_score": 0.65,
+            "weather_risk": 0.2,
+            "traffic_risk": 0.4,
+            "peak_hour": 1.2
+          }
+        }
+      },
+      {
+        "location_id": "S_E",
+        "location_name": "South End",
+        "model_info": {
+          "model_type": "gnn",
+          "prediction": 13.869799613952637,
+          "confidence": 0.1845812023622201,
+          "factors": {
+            "demand_impact": 8.4,
+            "access_impact": 1.5000000000000002,
+            "weather_impact": 0.2,
+            "traffic_impact": 0.30000000000000004,
+            "peak_impact": 0.0,
+            "historical_baseline": 7.639999999999999
+          },
+          "input_features": {
+            "demand": 140,
+            "access_score": 0.7,
+            "weather_risk": 0.1,
+            "traffic_risk": 0.2,
+            "peak_hour": 1.0
+          }
+        }
+      }
+    ],
+    "risk_assessment": [
+      {
+        "src_id": "S_B",
+        "dst_id": "S_D",
+        "src_name": "North End",
+        "dst_name": "Beacon Hill",
+        "base_time": 6.459047890373988,
+        "risk_multiplier": "0.32973257",
+        "adjusted_time": 8.588806332107438,
+        "time_increase": 2.1297584417334505,
+        "risk_factors": {
+          "src_risk": 0.4,
+          "dst_risk": 0.3,
+          "src_light": 0.6,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "S_A",
+        "dst_id": "S_B",
+        "src_name": "Back Bay Station",
+        "dst_name": "North End",
+        "base_time": 18.52058330188577,
+        "risk_multiplier": "0.32845584",
+        "adjusted_time": 24.603776965750953,
+        "time_increase": 6.083193663865181,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.4,
+          "src_light": 0.7,
+          "dst_light": 0.6
+        }
+      },
+      {
+        "src_id": "D",
+        "dst_id": "S_B",
+        "src_name": "Downtown Boston Depot",
+        "dst_name": "North End",
+        "base_time": 20.888846529518606,
+        "risk_multiplier": "0.32663357",
+        "adjusted_time": 27.71184509849781,
+        "time_increase": 6.822998568979205,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.4,
+          "src_light": 0.9,
+          "dst_light": 0.6
+        }
+      },
+      {
+        "src_id": "S_E",
+        "dst_id": "S_B",
+        "src_name": "South End",
+        "dst_name": "North End",
+        "base_time": 18.76546757899193,
+        "risk_multiplier": "0.3238063",
+        "adjusted_time": 24.84184393813692,
+        "time_increase": 6.076376359144987,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.4,
+          "src_light": 0.9,
+          "dst_light": 0.6
+        }
+      },
+      {
+        "src_id": "D",
+        "dst_id": "S_D",
+        "src_name": "Downtown Boston Depot",
+        "dst_name": "Beacon Hill",
+        "base_time": 8.592606348139133,
+        "risk_multiplier": "0.32164755",
+        "adjusted_time": 11.35639716796787,
+        "time_increase": 2.7637908198287366,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.3,
+          "src_light": 0.9,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "S_D",
+        "dst_id": "S_A",
+        "src_name": "Beacon Hill",
+        "dst_name": "Back Bay Station",
+        "base_time": 5.948286213966371,
+        "risk_multiplier": "0.3216419",
+        "adjusted_time": 7.861504247142448,
+        "time_increase": 1.9132180331760766,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.3,
+          "src_light": 0.7,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "D",
+        "dst_id": "S_A",
+        "src_name": "Downtown Boston Depot",
+        "dst_name": "Back Bay Station",
+        "base_time": 17.633389270933556,
+        "risk_multiplier": "0.321471",
+        "adjusted_time": 23.30201265337534,
+        "time_increase": 5.668623382441783,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.3,
+          "src_light": 0.9,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "S_A",
+        "dst_id": "D",
+        "src_name": "Back Bay Station",
+        "dst_name": "Downtown Boston Depot",
+        "base_time": 8.530492882742909,
+        "risk_multiplier": "0.32056805",
+        "adjusted_time": 11.265096393625571,
+        "time_increase": 2.7346035108826623,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.3,
+          "src_light": 0.7,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_B",
+        "dst_id": "D",
+        "src_name": "North End",
+        "dst_name": "Downtown Boston Depot",
+        "base_time": 23.06233167751318,
+        "risk_multiplier": "0.32014504",
+        "adjusted_time": 30.445622792212262,
+        "time_increase": 7.383291114699084,
+        "risk_factors": {
+          "src_risk": 0.4,
+          "dst_risk": 0.3,
+          "src_light": 0.6,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_B",
+        "dst_id": "S_E",
+        "src_name": "North End",
+        "dst_name": "South End",
+        "base_time": 7.145913281481264,
+        "risk_multiplier": "0.32012358",
+        "adjusted_time": 9.433488645516462,
+        "time_increase": 2.287575364035198,
+        "risk_factors": {
+          "src_risk": 0.4,
+          "dst_risk": 0.2,
+          "src_light": 0.6,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_D",
+        "dst_id": "D",
+        "src_name": "Beacon Hill",
+        "dst_name": "Downtown Boston Depot",
+        "base_time": 16.770620057098583,
+        "risk_multiplier": "0.3196629",
+        "adjusted_time": 22.131565078870537,
+        "time_increase": 5.360945021771954,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.3,
+          "src_light": 0.7,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_D",
+        "dst_id": "S_B",
+        "src_name": "Beacon Hill",
+        "dst_name": "North End",
+        "base_time": 24.086339224158632,
+        "risk_multiplier": "0.31890312",
+        "adjusted_time": 31.76754791290776,
+        "time_increase": 7.681208688749127,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.4,
+          "src_light": 0.7,
+          "dst_light": 0.6
+        }
+      },
+      {
+        "src_id": "S_C",
+        "dst_id": "S_B",
+        "src_name": "Harvard Square",
+        "dst_name": "North End",
+        "base_time": 9.307315820567668,
+        "risk_multiplier": "0.3186471",
+        "adjusted_time": 12.27306489104687,
+        "time_increase": 2.9657490704792018,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.4,
+          "src_light": 0.8,
+          "dst_light": 0.6
+        }
+      },
+      {
+        "src_id": "S_E",
+        "dst_id": "D",
+        "src_name": "South End",
+        "dst_name": "Downtown Boston Depot",
+        "base_time": 8.230591010267094,
+        "risk_multiplier": "0.3152661",
+        "adjusted_time": 10.825417359776937,
+        "time_increase": 2.5948263495098427,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.3,
+          "src_light": 0.9,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_B",
+        "dst_id": "S_A",
+        "src_name": "North End",
+        "dst_name": "Back Bay Station",
+        "base_time": 24.664696825538176,
+        "risk_multiplier": "0.31502286",
+        "adjusted_time": 32.43464006182146,
+        "time_increase": 7.769943236283286,
+        "risk_factors": {
+          "src_risk": 0.4,
+          "dst_risk": 0.3,
+          "src_light": 0.6,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "S_A",
+        "dst_id": "S_E",
+        "src_name": "Back Bay Station",
+        "dst_name": "South End",
+        "base_time": 5.111357978050992,
+        "risk_multiplier": "0.3139072",
+        "adjusted_time": 6.715850080105814,
+        "time_increase": 1.604492102054822,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.2,
+          "src_light": 0.7,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_B",
+        "dst_id": "S_C",
+        "src_name": "North End",
+        "dst_name": "Harvard Square",
+        "base_time": 11.792729079751405,
+        "risk_multiplier": "0.31348193",
+        "adjusted_time": 15.48953651529416,
+        "time_increase": 3.6968074355427554,
+        "risk_factors": {
+          "src_risk": 0.4,
+          "dst_risk": 0.2,
+          "src_light": 0.6,
+          "dst_light": 0.8
+        }
+      },
+      {
+        "src_id": "S_E",
+        "dst_id": "S_A",
+        "src_name": "South End",
+        "dst_name": "Back Bay Station",
+        "base_time": 8.731651275243028,
+        "risk_multiplier": "0.31293458",
+        "adjusted_time": 11.464086877633434,
+        "time_increase": 2.7324356023904066,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.3,
+          "src_light": 0.9,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "D",
+        "dst_id": "S_E",
+        "src_name": "Downtown Boston Depot",
+        "dst_name": "South End",
+        "base_time": 9.352818030716321,
+        "risk_multiplier": "0.312933",
+        "adjusted_time": 12.279623416274099,
+        "time_increase": 2.9268053855577776,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.2,
+          "src_light": 0.9,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_D",
+        "dst_id": "S_E",
+        "src_name": "Beacon Hill",
+        "dst_name": "South End",
+        "base_time": 18.742397307320175,
+        "risk_multiplier": "0.3098975",
+        "adjusted_time": 24.550619605475717,
+        "time_increase": 5.808222298155542,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.2,
+          "src_light": 0.7,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_D",
+        "dst_id": "S_C",
+        "src_name": "Beacon Hill",
+        "dst_name": "Harvard Square",
+        "base_time": 5.233312942198944,
+        "risk_multiplier": "0.30981722",
+        "adjusted_time": 6.854683434152085,
+        "time_increase": 1.6213704919531402,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.2,
+          "src_light": 0.7,
+          "dst_light": 0.8
+        }
+      },
+      {
+        "src_id": "D",
+        "dst_id": "S_C",
+        "src_name": "Downtown Boston Depot",
+        "dst_name": "Harvard Square",
+        "base_time": 14.215654762858058,
+        "risk_multiplier": "0.3093329",
+        "adjusted_time": 18.613024578402474,
+        "time_increase": 4.397369815544415,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.2,
+          "src_light": 0.9,
+          "dst_light": 0.8
+        }
+      },
+      {
+        "src_id": "S_A",
+        "dst_id": "S_D",
+        "src_name": "Back Bay Station",
+        "dst_name": "Beacon Hill",
+        "base_time": 24.188230700245217,
+        "risk_multiplier": "0.30882576",
+        "adjusted_time": 31.658179455421944,
+        "time_increase": 7.469948755176727,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.3,
+          "src_light": 0.7,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "S_C",
+        "dst_id": "S_D",
+        "src_name": "Harvard Square",
+        "dst_name": "Beacon Hill",
+        "base_time": 8.428090181555321,
+        "risk_multiplier": "0.30770195",
+        "adjusted_time": 11.021429925624773,
+        "time_increase": 2.5933397440694517,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.3,
+          "src_light": 0.8,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "S_C",
+        "dst_id": "S_A",
+        "src_name": "Harvard Square",
+        "dst_name": "Back Bay Station",
+        "base_time": 18.345524000910927,
+        "risk_multiplier": "0.3071764",
+        "adjusted_time": 23.980836224211536,
+        "time_increase": 5.635312223300609,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.3,
+          "src_light": 0.8,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "S_E",
+        "dst_id": "S_D",
+        "src_name": "South End",
+        "dst_name": "Beacon Hill",
+        "base_time": 24.33409367988115,
+        "risk_multiplier": "0.3053211",
+        "adjusted_time": 31.763805865823265,
+        "time_increase": 7.429712185942115,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.3,
+          "src_light": 0.9,
+          "dst_light": 0.7
+        }
+      },
+      {
+        "src_id": "S_C",
+        "dst_id": "D",
+        "src_name": "Harvard Square",
+        "dst_name": "Downtown Boston Depot",
+        "base_time": 24.237842703639096,
+        "risk_multiplier": "0.30233648",
+        "adjusted_time": 31.565826851099732,
+        "time_increase": 7.327984147460636,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.3,
+          "src_light": 0.8,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_E",
+        "dst_id": "S_C",
+        "src_name": "South End",
+        "dst_name": "Harvard Square",
+        "base_time": 20.167562637302222,
+        "risk_multiplier": "0.30136788",
+        "adjusted_time": 26.245418212168797,
+        "time_increase": 6.077855574866575,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.2,
+          "src_light": 0.9,
+          "dst_light": 0.8
+        }
+      },
+      {
+        "src_id": "S_C",
+        "dst_id": "S_E",
+        "src_name": "Harvard Square",
+        "dst_name": "South End",
+        "base_time": 19.741243493681658,
+        "risk_multiplier": "0.29937643",
+        "adjusted_time": 25.651306457611152,
+        "time_increase": 5.910062963929494,
+        "risk_factors": {
+          "src_risk": 0.2,
+          "dst_risk": 0.2,
+          "src_light": 0.8,
+          "dst_light": 0.9
+        }
+      },
+      {
+        "src_id": "S_A",
+        "dst_id": "S_C",
+        "src_name": "Back Bay Station",
+        "dst_name": "Harvard Square",
+        "base_time": 24.060457239058103,
+        "risk_multiplier": "0.2989186",
+        "adjusted_time": 31.252575549028936,
+        "time_increase": 7.192118309970834,
+        "risk_factors": {
+          "src_risk": 0.3,
+          "dst_risk": 0.2,
+          "src_light": 0.7,
+          "dst_light": 0.8
+        }
+      }
+    ],
+    "routing": {
+      "routes": [
+        {
+          "route_id": 1,
+          "vehicle_info": {
+            "id": "V1",
+            "type": "truck",
+            "capacity": 400
+          },
+          "performance": {
+            "distance_km": 6.98,
+            "time_min": 0,
+            "load": 285,
+            "stops_count": 3
+          },
+          "stops": [
+            {
+              "sequence": 1,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": true
+            },
+            {
+              "sequence": 2,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": false
+            },
+            {
+              "sequence": 3,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": false
+            }
+          ]
+        },
+        {
+          "route_id": 2,
+          "vehicle_info": {
+            "id": "V2",
+            "type": "van",
+            "capacity": 200
+          },
+          "performance": {
+            "distance_km": 0.0,
+            "time_min": 0,
+            "load": 0,
+            "stops_count": 1
+          },
+          "stops": [
+            {
+              "sequence": 1,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": true
+            }
+          ]
+        },
+        {
+          "route_id": 3,
+          "vehicle_info": {
+            "id": "V3",
+            "type": "truck",
+            "capacity": 350
+          },
+          "performance": {
+            "distance_km": 6.82,
+            "time_min": 0,
+            "load": 290,
+            "stops_count": 3
+          },
+          "stops": [
+            {
+              "sequence": 1,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": true
+            },
+            {
+              "sequence": 2,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": false
+            },
+            {
+              "sequence": 3,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": false
+            }
+          ]
+        },
+        {
+          "route_id": 4,
+          "vehicle_info": {
+            "id": "V4",
+            "type": "van",
+            "capacity": 150
+          },
+          "performance": {
+            "distance_km": 1.32,
+            "time_min": 0,
+            "load": 150,
+            "stops_count": 2
+          },
+          "stops": [
+            {
+              "sequence": 1,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": true
+            },
+            {
+              "sequence": 2,
+              "stop_id": "Unknown",
+              "stop_name": "Unknown",
+              "coordinates": {
+                "lat": 0,
+                "lng": 0
+              },
+              "service_info": {
+                "demand": 0,
+                "priority": 0,
+                "service_min": 0,
+                "access_score": 0
+              },
+              "time_window": {},
+              "is_depot": false
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "solve_time": 10.01324725151062,
+        "total_routes": 4,
+        "total_distance": 15.120000000000001,
+        "total_time": 0,
+        "total_load": 725,
+        "total_capacity": 1100,
+        "capacity_utilization": 65.9090909090909,
+        "average_route_length": 2.25,
+        "vehicle_efficiency": 1.0
+      },
+      "solver_result": {
+        "ok": true,
+        "routes": [
+          {
+            "vehicle_id": "V1",
+            "stops": [
+              {
+                "node": 0,
+                "t_min": 0
+              },
+              {
+                "node": 3,
+                "t_min": 6
+              },
+              {
+                "node": 5,
+                "t_min": 19
+              }
+            ],
+            "distance_km": 6.98,
+            "drive_min": 9,
+            "load": 285,
+            "co2_kg": 5.73
+          },
+          {
+            "vehicle_id": "V2",
+            "stops": [
+              {
+                "node": 0,
+                "t_min": 0
+              }
+            ],
+            "distance_km": 0.0,
+            "drive_min": 0,
+            "load": 0,
+            "co2_kg": 0.0
+          },
+          {
+            "vehicle_id": "V3",
+            "stops": [
+              {
+                "node": 0,
+                "t_min": 0
+              },
+              {
+                "node": 4,
+                "t_min": 5
+              },
+              {
+                "node": 2,
+                "t_min": 19
+              }
+            ],
+            "distance_km": 6.82,
+            "drive_min": 10,
+            "load": 290,
+            "co2_kg": 5.59
+          },
+          {
+            "vehicle_id": "V4",
+            "stops": [
+              {
+                "node": 0,
+                "t_min": 0
+              },
+              {
+                "node": 1,
+                "t_min": 1
+              }
+            ],
+            "distance_km": 1.32,
+            "drive_min": 1,
+            "load": 150,
+            "co2_kg": 1.06
+          }
+        ],
+        "summary": {
+          "total_distance_km": 15.12,
+          "total_drive_min": 20,
+          "total_served_demand": 725,
+          "start_iso": "2025-10-04T20:58:02+00:00",
+          "dropped_allowed": true
+        },
+        "_telemetry": {
+          "time_limit_sec": 10,
+          "num_workers": 0,
+          "allow_drop": true,
+          "drop_penalty_per_priority": 2000,
+          "nodes": 5,
+          "vehicles": 4
+        }
+      }
+    }
+  }
+}

@@ -209,3 +209,5 @@ def configure_google_maps(api_key: str):
     """Set Google Maps API key"""
     os.environ["GOOGLE_MAPS_API_KEY"] = api_key
     print("Google Maps API key configured successfully")
+
+
