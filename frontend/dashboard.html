@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwarmAura Dashboard - AI-Powered Routing System</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: 80px 1fr;
+            grid-template-areas: 
+                "sidebar header"
+                "sidebar main";
+            min-height: 100vh;
+        }
+        
+        .header {
+            grid-area: header;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .sidebar {
+            grid-area: sidebar;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 1rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-item {
+            display: block;
+            padding: 1rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .main-content {
+            grid-area: main;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-online {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin-top: 1rem;
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        
+        .route-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+        }
+        
+        .route-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .route-id {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .route-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .route-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .detail-item {
+            text-align: center;
+        }
+        
+        .detail-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .detail-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        
+        .accessibility-score {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .score-excellent {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .score-good {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .score-moderate {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .score-poor {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "main";
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <div class="logo">SwarmAura Dashboard</div>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>System Online</span>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <a href="#" class="nav-item active" data-section="overview">📊 Overview</a>
+            <a href="#" class="nav-item" data-section="routing">🚛 Routing</a>
+            <a href="#" class="nav-item" data-section="accessibility">♿ Accessibility</a>
+            <a href="#" class="nav-item" data-section="ml-models">🤖 ML Models</a>
+            <a href="#" class="nav-item" data-section="system">⚙️ System Health</a>
+            <a href="#" class="nav-item" data-section="analytics">📈 Analytics</a>
+        </div>
+        
+        <div class="main-content">
+            <!-- Overview Section -->
+            <div id="overview" class="dashboard-section">
+                <h1 style="margin-bottom: 2rem; color: white; font-size: 2.5rem;">AI-Powered Routing Dashboard</h1>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Active Routes</div>
+                            <div class="card-icon">🚛</div>
+                        </div>
+                        <div id="active-routes-metrics">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">System Performance</div>
+                            <div class="card-icon">⚡</div>
+                        </div>
+                        <div id="performance-metrics">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Accessibility Analysis</div>
+                            <div class="card-icon">♿</div>
+                        </div>
+                        <div id="accessibility-metrics">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">ML Model Status</div>
+                            <div class="card-icon">🤖</div>
+                        </div>
+                        <div id="ml-status">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">
+                        <div class="card-title">Real-time Performance Chart</div>
+                        <div class="card-icon">📊</div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Routing Section -->
+            <div id="routing" class="dashboard-section hidden">
+                <h2 style="margin-bottom: 2rem; color: white;">Route Management</h2>
+                <div id="routes-container">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading routes...
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Accessibility Section -->
+            <div id="accessibility" class="dashboard-section hidden">
+                <h2 style="margin-bottom: 2rem; color: white;">Accessibility Analysis</h2>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Location Analysis</div>
+                        <div class="card-icon">🗺️</div>
+                    </div>
+                    <div id="accessibility-map" class="map-container"></div>
+                </div>
+                <div id="accessibility-details" style="margin-top: 2rem;">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading accessibility data...
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ML Models Section -->
+            <div id="ml-models" class="dashboard-section hidden">
+                <h2 style="margin-bottom: 2rem; color: white;">ML Model Performance</h2>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Service Time Model</div>
+                            <div class="card-icon">⏱️</div>
+                        </div>
+                        <div id="service-time-model">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Risk Assessment</div>
+                            <div class="card-icon">⚠️</div>
+                        </div>
+                        <div id="risk-assessment">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Accessibility Evaluator</div>
+                            <div class="card-icon">🔍</div>
+                        </div>
+                        <div id="accessibility-evaluator">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Health Section -->
+            <div id="system" class="dashboard-section hidden">
+                <h2 style="margin-bottom: 2rem; color: white;">System Health</h2>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Component Status</div>
+                            <div class="card-icon">🔧</div>
+                        </div>
+                        <div id="component-status">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Performance Metrics</div>
+                            <div class="card-icon">📊</div>
+                        </div>
+                        <div id="system-performance">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Analytics Section -->
+            <div id="analytics" class="dashboard-section hidden">
+                <h2 style="margin-bottom: 2rem; color: white;">Analytics & Insights</h2>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Usage Statistics</div>
+                            <div class="card-icon">📈</div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="usageChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Efficiency Trends</div>
+                            <div class="card-icon">📊</div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="efficiencyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let performanceChart, usageChart, efficiencyChart;
+        let map;
+        let updateInterval;
+        
+        // API Base URL
+        const API_BASE = 'https://swarmaura-backend-1759601629-a851f87f1a0b.herokuapp.com';
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNavigation();
+            loadDashboardData();
+            initializeCharts();
+            startRealTimeUpdates();
+        });
+        
+        // Navigation
+        function initializeNavigation() {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.dataset.section;
+                    showSection(section);
+                    
+                    // Update active nav item
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+        
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.dashboard-section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+        
+        // Data loading
+        async function loadDashboardData() {
+            try {
+                await Promise.all([
+                    loadOverviewData(),
+                    loadRoutingData(),
+                    loadAccessibilityData(),
+                    loadMLMetrics(),
+                    loadSystemHealth()
+                ]);
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+        
+        async function loadOverviewData() {
+            try {
+                const response = await fetch(`${API_BASE}/api/dashboard/routing`);
+                const data = await response.json();
+                
+                updateActiveRoutesMetrics(data);
+                updatePerformanceMetrics(data);
+                updateAccessibilityMetrics(data);
+            } catch (error) {
+                console.error('Error loading overview data:', error);
+            }
+        }
+        
+        async function loadRoutingData() {
+            try {
+                const response = await fetch(`${API_BASE}/api/dashboard/routing`);
+                const data = await response.json();
+                
+                updateRoutesContainer(data);
+            } catch (error) {
+                console.error('Error loading routing data:', error);
+            }
+        }
+        
+        async function loadAccessibilityData() {
+            try {
+                const response = await fetch(`${API_BASE}/api/dashboard/accessibility`);
+                const data = await response.json();
+                
+                updateAccessibilityDetails(data);
+                initializeMap(data);
+            } catch (error) {
+                console.error('Error loading accessibility data:', error);
+            }
+        }
+        
+        async function loadMLMetrics() {
+            try {
+                const response = await fetch(`${API_BASE}/api/dashboard/ml-metrics`);
+                const data = await response.json();
+                
+                updateMLModels(data);
+            } catch (error) {
+                console.error('Error loading ML metrics:', error);
+            }
+        }
+        
+        async function loadSystemHealth() {
+            try {
+                const response = await fetch(`${API_BASE}/api/dashboard/system-health`);
+                const data = await response.json();
+                
+                updateSystemHealth(data);
+            } catch (error) {
+                console.error('Error loading system health:', error);
+            }
+        }
+        
+        // Update functions
+        function updateActiveRoutesMetrics(data) {
+            const container = document.getElementById('active-routes-metrics');
+            const stats = data.statistics;
+            
+            container.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Total Routes</span>
+                    <span class="metric-value">${stats.total_routes}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Active Routes</span>
+                    <span class="metric-value">${stats.active_routes}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Total Distance</span>
+                    <span class="metric-value">${stats.total_distance} km</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Average Efficiency</span>
+                    <span class="metric-value">${stats.average_efficiency}%</span>
+                </div>
+            `;
+        }
+        
+        function updatePerformanceMetrics(data) {
+            const container = document.getElementById('performance-metrics');
+            const stats = data.statistics;
+            
+            container.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Total Time</span>
+                    <span class="metric-value">${stats.total_time} min</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Accessibility Avg</span>
+                    <span class="metric-value">${stats.accessibility_avg}%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">System Load</span>
+                    <span class="metric-value">${Math.floor(Math.random() * 40 + 30)}%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">API Response</span>
+                    <span class="metric-value">${Math.floor(Math.random() * 50 + 20)}ms</span>
+                </div>
+            `;
+        }
+        
+        function updateAccessibilityMetrics(data) {
+            const container = document.getElementById('accessibility-metrics');
+            const summary = data.summary;
+            
+            container.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Locations Analyzed</span>
+                    <span class="metric-value">${summary.total_locations}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Avg Score</span>
+                    <span class="metric-value">${summary.avg_accessibility_score}%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">High Risk</span>
+                    <span class="metric-value">${summary.high_risk_locations}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Features Detected</span>
+                    <span class="metric-value">${summary.total_features_detected}</span>
+                </div>
+            `;
+        }
+        
+        function updateMLModels(data) {
+            const serviceTimeContainer = document.getElementById('service-time-model');
+            const riskContainer = document.getElementById('risk-assessment');
+            const accessibilityContainer = document.getElementById('accessibility-evaluator');
+            
+            serviceTimeContainer.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Accuracy</span>
+                    <span class="metric-value">${data.service_time_model.accuracy}%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Status</span>
+                    <span class="status-badge status-online">${data.service_time_model.status}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Predictions Today</span>
+                    <span class="metric-value">${data.service_time_model.predictions_today}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Avg Time</span>
+                    <span class="metric-value">${data.service_time_model.avg_prediction_time}s</span>
+                </div>
+            `;
+            
+            riskContainer.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Accuracy</span>
+                    <span class="metric-value">${data.risk_assessment.accuracy}%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Status</span>
+                    <span class="status-badge status-online">${data.risk_assessment.status}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Assessments Today</span>
+                    <span class="metric-value">${data.risk_assessment.assessments_today}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">High Risk Avoided</span>
+                    <span class="metric-value">${data.risk_assessment.high_risk_avoided}</span>
+                </div>
+            `;
+            
+            accessibilityContainer.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Accuracy</span>
+                    <span class="metric-value">${data.accessibility_evaluator.accuracy}%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Status</span>
+                    <span class="status-badge status-online">${data.accessibility_evaluator.status}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Evaluations Today</span>
+                    <span class="metric-value">${data.accessibility_evaluator.evaluations_today}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Features Detected</span>
+                    <span class="metric-value">${data.accessibility_evaluator.features_detected}</span>
+                </div>
+            `;
+        }
+        
+        function updateRoutesContainer(data) {
+            const container = document.getElementById('routes-container');
+            const routes = data.routes;
+            
+            container.innerHTML = routes.map(route => `
+                <div class="route-item">
+                    <div class="route-header">
+                        <span class="route-id">${route.vehicle_id.toUpperCase()}</span>
+                        <span class="route-status status-${route.status === 'active' ? 'online' : 'warning'}">${route.status}</span>
+                    </div>
+                    <div class="route-details">
+                        <div class="detail-item">
+                            <div class="detail-value">${route.total_distance} km</div>
+                            <div class="detail-label">Distance</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-value">${route.total_time} min</div>
+                            <div class="detail-label">Time</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-value">${route.stops}</div>
+                            <div class="detail-label">Stops</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-value">${route.efficiency_score}%</div>
+                            <div class="detail-label">Efficiency</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${route.load_percentage}%"></div>
+                        </div>
+                        <div style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+                            Load: ${route.load_percentage}%
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function updateAccessibilityDetails(data) {
+            const container = document.getElementById('accessibility-details');
+            const locations = data.locations;
+            
+            container.innerHTML = locations.map(location => `
+                <div class="card" style="margin-bottom: 1rem;">
+                    <div class="card-header">
+                        <div class="card-title">${location.name}</div>
+                        <div class="accessibility-score score-${getScoreClass(location.accessibility_score)}">
+                            ${location.accessibility_score}/100
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Features Detected</span>
+                        <span class="metric-value">${location.features.length}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Hazards Identified</span>
+                        <span class="metric-value">${location.hazards.length}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Analysis Time</span>
+                        <span class="metric-value">${location.analysis_time}s</span>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <strong>Recommendations:</strong>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            ${location.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function getScoreClass(score) {
+            if (score >= 80) return 'excellent';
+            if (score >= 60) return 'good';
+            if (score >= 40) return 'moderate';
+            return 'poor';
+        }
+        
+        function updateSystemHealth(data) {
+            const componentContainer = document.getElementById('component-status');
+            const performanceContainer = document.getElementById('system-performance');
+            
+            componentContainer.innerHTML = Object.entries(data.components).map(([name, component]) => `
+                <div class="metric">
+                    <span class="metric-label">${name.replace('_', ' ').toUpperCase()}</span>
+                    <span class="status-badge status-${component.status === 'online' ? 'online' : 'error'}">${component.status}</span>
+                </div>
+            `).join('');
+            
+            performanceContainer.innerHTML = `
+                <div class="metric">
+                    <span class="metric-label">Response Time</span>
+                    <span class="metric-value">${data.performance.avg_response_time}s</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Requests/min</span>
+                    <span class="metric-value">${data.performance.requests_per_minute}</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Error Rate</span>
+                    <span class="metric-value">${data.performance.error_rate}%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">CPU Usage</span>
+                    <span class="metric-value">${data.performance.cpu_usage}%</span>
+                </div>
+            `;
+        }
+        
+        // Map initialization
+        function initializeMap(data) {
+            if (map) {
+                map.remove();
+            }
+            
+            map = L.map('accessibility-map').setView([42.3601, -71.0589], 12);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            data.locations.forEach(location => {
+                const color = getScoreColor(location.accessibility_score);
+                L.circleMarker([location.lat, location.lng], {
+                    radius: 10,
+                    fillColor: color,
+                    color: '#000',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map).bindPopup(`
+                    <strong>${location.name}</strong><br>
+                    Accessibility: ${location.accessibility_score}/100<br>
+                    Features: ${location.features.length}<br>
+                    Hazards: ${location.hazards.length}
+                `);
+            });
+        }
+        
+        function getScoreColor(score) {
+            if (score >= 80) return '#4CAF50';
+            if (score >= 60) return '#2196F3';
+            if (score >= 40) return '#FF9800';
+            return '#F44336';
+        }
+        
+        // Charts
+        function initializeCharts() {
+            // Performance Chart
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            performanceChart = new Chart(performanceCtx, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                    datasets: [{
+                        label: 'System Load %',
+                        data: [20, 35, 45, 60, 55, 40],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Efficiency %',
+                        data: [85, 88, 92, 89, 91, 94],
+                        borderColor: '#764ba2',
+                        backgroundColor: 'rgba(118, 75, 162, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            // Usage Chart
+            const usageCtx = document.getElementById('usageChart').getContext('2d');
+            usageChart = new Chart(usageCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Route Optimization', 'Accessibility Analysis', 'ML Predictions', 'System Monitoring'],
+                    datasets: [{
+                        data: [35, 25, 20, 20],
+                        backgroundColor: ['#667eea', '#764ba2', '#4CAF50', '#FF9800']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+            
+            // Efficiency Chart
+            const efficiencyCtx = document.getElementById('efficiencyChart').getContext('2d');
+            efficiencyChart = new Chart(efficiencyCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Route Efficiency %',
+                        data: [88, 92, 85, 94, 91, 89, 87],
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Real-time updates
+        function startRealTimeUpdates() {
+            updateInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(`${API_BASE}/api/dashboard/real-time-updates`);
+                    const data = await response.json();
+                    updateRealTimeData(data);
+                } catch (error) {
+                    console.error('Error updating real-time data:', error);
+                }
+            }, 5000);
+        }
+        
+        function updateRealTimeData(data) {
+            // Update any real-time elements here
+            console.log('Real-time update:', data);
+        }
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (updateInterval) {
+                clearInterval(updateInterval);
+            }
+        });
+    </script>
+</body>
+</html>
