@@ -1,314 +1,330 @@
-# 🚀 HivePath AI - Self-Healing Logistics Platform
+# HivePath AI
 
-<div align="center">
+### The routing engine that treats accessibility as a first-class constraint — not an afterthought.
 
-![HivePath AI Logo](integrated_dashboard/public/logo.png)
+Every logistics optimizer on the market solves the same objective: minimize
+distance, minimize time, minimize cost. That objective has a blind spot it
+never has to answer for — **it doesn't know which stops are hard to reach, so
+it drops them first, silently, every single time capacity runs short.**
+HivePath is built around closing that blind spot at the objective-function
+level, not with a dashboard warning bolted on afterward.
 
-**The Future of Intelligent Logistics is Here**
+Given a depot, a fleet, and a list of stops, it plans routes under time windows
+and capacity limits — same category as any commercial VRP engine. The
+difference shows up exactly when it matters: when the fleet **can't serve
+everything.** A standard optimizer sheds whatever is most awkward to reach.
+HivePath makes awkward stops *more expensive to skip*, so the plan sheds easy
+ones instead. Measured below: **+25 points of service rate for hard-to-reach
+stops, at zero cost to overall throughput.**
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
-[![Next.js](https://img.shields.io/badge/Next.js-15.2.4-black.svg)](https://nextjs.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com)
-[![Graph Neural Networks](https://img.shields.io/badge/AI-Graph%20Neural%20Networks-purple.svg)](https://pytorch.org)
-[![Cloudflare](https://img.shields.io/badge/Cloudflare-Edge%20Computing-orange.svg)](https://cloudflare.com)
-
-*Built for HackHarvard 2024*
-
-</div>
-
----
-
-## 🎯 **What is HivePath AI?**
-
-HivePath AI is a revolutionary **self-healing logistics platform** that uses advanced AI to optimize delivery routes in real-time. Think of it as a logistics system that **thinks, adapts, and heals itself** when disruptions occur.
-
-### **The Problem We Solve:**
-- **$1.5 trillion** lost annually due to inefficient logistics
-- **30% of deliveries** fail due to poor route planning  
-- **15% of people** can't receive services due to accessibility barriers
-- **Real-time disruptions** (weather, traffic, accidents) cause massive delays
-
-### **Our Solution:**
-🧠 **AI-Powered Intelligence** that makes logistics systems **self-healing** and **adaptive**
-
----
-
-## ✨ **Key Features**
-
-### 🧠 **Advanced AI Architecture**
-- **Graph Neural Networks** for service time prediction
-- **Swarm Intelligence** with distributed AI agents
-- **Knowledge Graphs** for dynamic operational modeling
-- **Computer Vision** for accessibility analysis
-
-### 🌐 **Real-Time Intelligence**
-- **Weather Integration** - Routes adapt to weather conditions
-- **Traffic Analysis** - Real-time traffic optimization
-- **Accessibility Scoring** - Ensures inclusive delivery
-- **Incident Response** - Automatic re-routing during disruptions
-
-### ⚡ **Performance & Scale**
-- **Multi-depot routing** with 100% delivery success
-- **Large-scale optimization** (15+ locations, 10+ vehicles)
-- **10.1x performance improvement** with intelligent caching
-- **Sub-100ms response times** with edge computing
-
-### ☁️ **Cloudflare Integration**
-- **Workers AI** - AI inference at the edge
-- **Pages** - Global CDN deployment
-- **R2 Storage** - ML models and data storage
-- **Security** - Enterprise-grade protection
-
----
-
-## 🏗️ **System Architecture**
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    HIVEPATH AI ECOSYSTEM                    │
-├─────────────────────────────────────────────────────────────┤
-│  🌐 Frontend Dashboard (Next.js + TypeScript)              │
-│  ├── Real-time Map Visualization                           │
-│  ├── AI Insights Panel                                     │
-│  ├── Performance Metrics                                   │
-│  └── 3D Knowledge Graph                                    │
-├─────────────────────────────────────────────────────────────┤
-│  🧠 AI/ML Layer                                            │
-│  ├── Graph Neural Networks (Service Time Prediction)       │
-│  ├── Risk Assessment Models                                │
-│  ├── Warm-start Clustering                                 │
-│  └── Computer Vision (OpenCV)                              │
-├─────────────────────────────────────────────────────────────┤
-│  🔄 Backend API (FastAPI + Python)                         │
-│  ├── Route Optimization (OR-Tools)                         │
-│  ├── Real-time Data Integration                            │
-│  ├── Weather & Traffic APIs                                │
-│  └── Swarm Intelligence Coordination                       │
-├─────────────────────────────────────────────────────────────┤
-│  ☁️ Cloudflare Edge Computing                              │
-│  ├── Workers AI (Edge Inference)                           │
-│  ├── Pages (Global CDN)                                    │
-│  ├── R2 Storage (ML Models)                                │
-│  └── Security & Performance                                │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 🚀 **Quick Start**
-
-### **Prerequisites**
-- Python 3.9+
-- Node.js 18+
-- Google Maps API Key
-- Cloudflare Account (optional)
-
-### **1. Clone the Repository**
 ```bash
-git clone https://github.com/kbhatnagar1506/Hivepath-AI.git
-cd Hivepath-AI/swarmaura
+cp .env.example .env          # optional — every value has a working default
+pip install -e ".[dev]"
+pytest                        # 190 tests, 85% coverage
+python -m hivepath            # http://localhost:8000/docs
 ```
 
-### **2. Backend Setup**
+---
+
+## How it stacks up
+
+|  | Distance-only VRP<br>*(typical commercial stack)* | HivePath AI |
+|---|---|---|
+| Objective function | Minimize distance / time / cost | Minimize distance / time / cost **+ accessibility-weighted drop cost** |
+| When capacity runs short | Drops whichever stop is costliest to reach — usually the hard address | Drops the *easiest* stop first; hard-to-reach stops are kept in the plan |
+| Accessibility data | Not modeled | 0–100 score per stop, from vision-scored Street View imagery or supplied directly |
+| No credentials configured | Often won't start, or silently no-ops a feature | **Starts and solves routes with zero credentials.** Degraded features report their own fallback |
+| Distance source transparency | Rarely exposed | Every plan reports `matrix_source`: `haversine` or `google_maps` — never claims one while using the other |
+| Disruption response | Full manual re-plan | `POST /incidents` blocks a stop and replans in one call, warm-started from the previous plan |
+| Failure mode on partial infeasibility | Often a hard error | 200 OK with `ok: false` and a reason, or a partial plan with `dropped_stop_ids` — never a crash for a well-formed problem |
+| Test suite | Frequently absent or unverifiable from outside | 190 tests, 85% coverage, runnable by anyone who clones the repo |
+| Impact claims | Marketing figures | `scripts/benchmark_impact.py` — run it yourself, seed included |
+
+---
+
+## Why this exists
+
+A route optimizer minimizing distance or time treats every stop as
+interchangeable. It isn't. A stop with no legal kerbside parking, a blocked
+loading bay, or stairs-only access costs more to serve — so when capacity runs
+short, a distance-minimizing objective drops it **first, and every time.**
+Nobody configures that outcome. It falls out of the math by default, and it
+compounds silently, one route at a time, forever, unless something in the
+objective function pushes back.
+
+Those aren't randomly distributed addresses, either. They skew toward older
+housing stock, dense blocks, and buildings that never got a loading dock —
+which means the "efficient" route is systematically less efficient at serving
+exactly the people who already have the fewest alternatives.
+
+HivePath inverts that default at the source: inside the objective function
+itself, not in a report generated after the fact. Accessibility raises the
+cost of leaving a stop unserved, so the solver keeps it. This is the single
+idea the whole system is built to protect.
+
+### The numbers
+
+`scripts/benchmark_impact.py` runs the same solver twice per scenario —
+accessibility weighting on, then off — so the only variable is the feature
+itself. 59 scenarios, 14–22 stops, fleet capacity deliberately set to 72% of
+total demand to force real trade-offs:
+
 ```bash
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Start the FastAPI backend
-cd backend
-python -m uvicorn app:app --reload --host 0.0.0.0 --port 8000
+python scripts/benchmark_impact.py --trials 60
 ```
 
-### **3. Frontend Setup**
+**Equity** — service rate for hard-to-reach stops (access score < 35):
+
+| | Service rate |
+|---|---|
+| Accessibility weighting **on** | **100%** |
+| Accessibility weighting **off** | ~75% |
+| Difference | **+25 points** |
+
+Overall service rate is 73.5% either way — the fleet is capacity-limited, so
+this is not "serve more stops". It is **the same number of stops, chosen
+differently.** With weighting on, no hard-to-reach stop was dropped in any of
+the 59 scenarios; the plan drops easier ones instead.
+
+**Efficiency** — optimized plan vs. serving the manifest in submitted order,
+which is what happens without an optimizer:
+
+| | Result |
+|---|---|
+| Mean optimized distance | ~41 km |
+| Mean unoptimized distance | 58.0 km |
+| **Reduction** | **~27%** |
+| CO₂ avoided per run | ~14 kg (diesel) |
+
+**On reproducibility:** the seed fixes the scenarios, so the problem set and the
+58.0 km unoptimized baseline are identical on every run. The solver results are
+not bit-identical, because `time_limit_sec` is wall-clock — how much search
+completes depends on machine load. Across runs the figures move by a few tenths
+of a point (75.5% / 75.1%, 27.0% / 27.3%), which is why they are quoted as
+approximate. Re-run it yourself rather than taking these numbers on faith.
+
+> These are **synthetic scenarios measuring solver behaviour**, not
+> field-observed delivery outcomes. They show what the software does under
+> controlled conditions. Real fleets have curb-time variance, driver knowledge,
+> and traffic that this does not model. Treat them as a lower bound on the
+> question "does the feature do anything" and nothing more.
+
+---
+
+## How accessibility enters the objective
+
+`access_score` is **0–100**, higher meaning easier to reach. In an OR-Tools
+disjunction the penalty is what the objective pays for leaving a stop unserved,
+so raising it makes a stop more likely to be visited:
+
+```
+drop_penalty = priority × penalty_per_priority
+             + weight × drop_penalty × (100 − access_score)
+```
+
+At the 0.002 default, a fully inaccessible stop costs 20% more to skip than a
+fully accessible one. Three properties worth stating plainly:
+
+- **`access_score: null` means unassessed**, and is treated neutrally — which is
+  deliberately different from an assessed score of 50. Absence of evidence is
+  not evidence of inaccessibility.
+- **It never overrides priority.** A priority-3 stop still outranks a
+  priority-1 stop regardless of accessibility. Accessibility breaks ties within
+  a priority band; it does not reorder the bands.
+- **It scales with the preset.** The weight is a fraction of the base penalty,
+  so raising `drop_penalty_per_priority` raises the accessibility term with it.
+
+Where scores come from: Street View imagery scored by a vision model
+(`POST /api/v1/accessibility/analyze`), or supplied directly on each stop. Both
+optional — the solver runs fine without either.
+
+---
+
+## Degradation
+
+The service starts and solves routes with **no credentials at all.** Features
+that need a key fall back and *say so* in the response, rather than failing or
+quietly pretending:
+
+| | Without credentials | With credentials |
+|---|---|---|
+| Distances | Haversine (`matrix_source: "haversine"`) | Google roads + live traffic (`matrix_source: "google_maps"`) |
+| Accessibility | Stops stay `access_score: null` | Street View + vision model score each kerbside |
+| Service times | Heuristic (demand + accessibility) | Trained model, when a checkpoint is present |
+
+Every plan carries a `telemetry` block reporting which path actually ran, so a
+result can never claim road distances it didn't use.
+
+---
+
+## API
+
+All endpoints under `/api/v1`. Interactive docs at `/docs`.
+
+| Method | Path | Purpose |
+|---|---|---|
+| `GET` | `/health` | Status and which integrations have credentials |
+| `POST` | `/optimize/routes` | Plan routes |
+| `GET` | `/plans/{run_id}` | Fetch a stored plan |
+| `GET` | `/plans/{run_id}/metrics` | Distance, emissions, service rate |
+| `POST` | `/incidents` | Block a stop, optionally replan |
+| `GET` | `/incidents` | List active blocks |
+| `DELETE` | `/incidents/{stop_id}` | Clear a block |
+| `POST` | `/accessibility/analyze` | Score kerbside access at a location |
+
 ```bash
-# Install Node.js dependencies
-cd integrated_dashboard
-npm install
-
-# Start the Next.js frontend
-npm run dev
+curl -X POST localhost:8000/api/v1/optimize/routes \
+  -H 'Content-Type: application/json' -d '{
+  "run_id": "morning",
+  "depot": {"id": "hub", "lat": 42.3601, "lng": -71.0589},
+  "vehicles": [{"id": "v1", "capacity": 200, "fuel_type": "ev"}],
+  "stops": [
+    {"id": "s1", "lat": 42.3651, "lng": -71.0489, "demand": 40},
+    {"id": "s2", "lat": 42.3551, "lng": -71.0689, "demand": 40, "access_score": 20}
+  ]
+}'
 ```
 
-### **4. Access the Platform**
-- **Dashboard**: http://localhost:3001
-- **API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
+A well-formed problem with no solution returns **200 with `ok: false`** and a
+reason. A 5xx means the service itself failed. Over-capacity requests return a
+partial plan with `dropped_stop_ids` populated — not an error, because a partial
+plan is still the plan you want.
+
+### Presets
+
+`ultra_fast`, `fast`, `balanced`, `quality` set solver defaults. Anything you
+set explicitly still wins, so a preset is a starting point, not a straitjacket.
+
+### Disruptions
+
+`POST /incidents` blocks a stop for a TTL and can replan in one call. The replan
+seeds its search from the previous plan, so routes stay close to what drivers
+already have rather than reshuffling wholesale after one blocked dock.
 
 ---
 
-## 🧪 **System Capabilities**
+## Architecture
 
-### **✅ Comprehensive Testing Results**
-- **8/10 tests passed** (80% success rate)
-- **Multi-depot routing**: 100% delivery success
-- **Image processing**: 24.73 images/second
-- **Caching system**: 10.1x speedup
-- **Environmental routing**: Real-time weather/traffic integration
+```mermaid
+flowchart LR
+    C[Client] --> API[api/<br/>FastAPI]
+    API --> PLAN[planning.py<br/>enrich → predict → solve → persist]
+    PLAN --> ACC[accessibility/]
+    PLAN --> ML[ml/<br/>service time]
+    PLAN --> SOLVER[optimization/<br/>OR-Tools CVRP]
+    ACC --> INT[integrations/<br/>Google Maps · Street View · vision]
+    SOLVER --> INT
+    PLAN --> STORE[(storage/)]
+```
 
-### **🎯 Performance Metrics**
-- **68% faster** page load times globally
-- **75% faster** API response times
-- **99.9% uptime** with global distribution
-- **30% cost reduction** through edge computing
+```
+src/hivepath/
+├── config.py           Settings — the only place env vars are read
+├── logging_config.py   Structured logging (JSON in production)
+├── domain/             Typed core models (Depot, Stop, Vehicle, Route, Plan)
+├── optimization/
+│   ├── solver.py       OR-Tools CVRP with time windows
+│   ├── distance.py     Haversine and Google matrix providers
+│   ├── penalties.py    Drop-penalty model — where accessibility enters
+│   └── warm_start.py   Sweep-based initial routes
+├── ml/service_time.py  Service-time prediction (neural, heuristic fallback)
+├── accessibility/      Street View assessment, policy, stop enrichment
+├── integrations/       Google Maps, Street View, vision model clients
+├── storage/            Plan, request, and incident repositories
+├── planning.py         Pipeline: enrich → predict → solve → persist
+└── api/                FastAPI app, routes, request/response schemas
 
----
+tests/                  190 tests
+scripts/                benchmark_impact.py, model training
+legacy/                 superseded code — see legacy/README.md
+```
 
-## 🛠️ **Technology Stack**
+Pipeline order matters: accessibility runs **before** service-time prediction,
+because `access_score` is an input feature to that model — this is a named
+regression test (`test_accessibility_runs_before_service_time_prediction`),
+because it broke exactly this way once already.
 
-### **Frontend**
-- **Next.js 15.2.4** - React framework
-- **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first styling
-- **Radix UI** - Accessible components
-- **Three.js** - 3D visualizations
-
-### **Backend**
-- **FastAPI** - High-performance API framework
-- **Python 3.9+** - Core language
-- **OR-Tools** - Route optimization
-- **PyTorch** - Deep learning models
-- **OpenCV** - Computer vision
-
-### **AI/ML**
-- **Graph Neural Networks** - Service time prediction
-- **Swarm Intelligence** - Distributed AI agents
-- **Knowledge Graphs** - Dynamic modeling
-- **Computer Vision** - Accessibility analysis
-
-### **Infrastructure**
-- **Cloudflare Workers AI** - Edge computing
-- **Cloudflare Pages** - Global deployment
-- **Cloudflare R2** - Object storage
-- **Docker** - Containerization
-
-### **APIs & Data**
-- **Google Maps API** - Real-time traffic & distances
-- **Google Street View API** - Accessibility analysis
-- **OpenWeatherMap API** - Weather intelligence
-- **Public Safety APIs** - Incident data
+**[Read the full architecture doc →](docs/ARCHITECTURE.md)** — the request
+lifecycle traced end to end, what's inside the OR-Tools model (dimensions,
+disjunctions, warm start), the two-provider distance system and why its
+`matrix_source` label can be trusted, the accessibility pipeline, and every
+design decision's reason for existing, stated as the defect it replaced.
 
 ---
 
-## 📊 **Business Impact**
+## Testing
 
-### **Cost Savings**
-- **30% reduction** in delivery costs
-- **40% improvement** in route efficiency
-- **25% decrease** in failed deliveries
-- **50% reduction** in customer complaints
+```bash
+pytest                              # full suite
+pytest tests/test_solver.py -v
+pytest -k accessibility
+python -m coverage run --source=src/hivepath -m pytest && python -m coverage report
+```
 
-### **Accessibility Impact**
-- **15% more people** can receive services
-- **Real-time accessibility** scoring and routing
-- **Computer vision** analysis of delivery locations
-- **Inclusive logistics** for all users
+**190 passed in ~70s.** Coverage 85% overall, concentrated exactly where it
+should be:
 
-### **Environmental Benefits**
-- **20% reduction** in CO2 emissions
-- **Weather-aware routing** reduces fuel consumption
-- **Optimized routes** minimize environmental impact
-- **Real-time traffic** avoidance reduces congestion
+| Module | Coverage | | Module | Coverage |
+|---|---|---|---|---|
+| `api/schemas.py` | 99% | | `storage/repositories.py` | 96% |
+| `config.py` | 99% | | `optimization/penalties.py` | 95% |
+| `optimization/solver.py` | 98% | | `planning.py` | 95% |
+| `domain/models.py` | 98% | | `optimization/warm_start.py` | 94% |
 
----
+The uncovered 15% is concentrated in the network-calling clients
+(`integrations/`), which the suite deliberately does not exercise — an autouse
+fixture blanks all credentials, so no test reaches the internet.
 
-## 🏆 **Awards & Recognition**
+| Test file | Tests | Guards |
+|---|---:|---|
+| `test_api.py` | 25 | Full HTTP contract, every preset, 503/422/404 paths |
+| `test_solver.py` | 21 | Capacity, time windows, the crash on `allow_drop=False` |
+| `test_accessibility.py` | 19 | Vision-response validation, fail-open behavior |
+| `test_domain.py` | 17 | Model invariants, time-window parsing |
+| `test_warm_start.py` | 14 | The depot bug that silently disabled warm starts |
+| `test_config.py` / `test_distance.py` / `test_planning.py` / `test_storage.py` | 13 each | Env parsing, Google tiling limits, pipeline order, thread safety |
+| `test_service_time.py` | 12 | The 0–100 → 0–1 scale bug |
+| `test_penalties.py` | 12 | The exact truncation-to-zero regression |
 
-### **HackHarvard 2024**
-- **Best AI Application Built with Cloudflare** ☁️
-- **Best Use of Gemini API** 🤖
-- **Best Domain Name from GoDaddy Registry** 🌐
-- **Best Financial Hack by Capital One** 💰
-- **Best Consumer Hack by Terac** 🛒
-- **Coolant Climate Tech Challenge** 🌱
+Most of these are named after the defect they guard against, not the feature
+they exercise — `test_penalty_is_nonzero_at_default_weight`,
+`test_strips_depot_so_ortools_accepts_the_seed`,
+`test_accessibility_runs_before_service_time_prediction`. Two spin up real
+threads to prove concurrent writes to shared state aren't lost.
 
----
-
-## 🔬 **Technical Innovation**
-
-### **Self-Healing Architecture**
-Our system automatically detects disruptions and re-routes in real-time:
-
-1. **Perception** - AI agents monitor system health
-2. **Analysis** - Graph neural networks predict impacts
-3. **Adaptation** - Routes automatically adjust
-4. **Learning** - System improves from each disruption
-
-### **Swarm Intelligence**
-- **Inspector Agents** - Real-time environmental monitoring
-- **Architect Agent** - Route coordination and optimization
-- **Self-Healing Loop** - Continuous adaptation and improvement
-
-### **Knowledge Graph**
-Dynamic, interconnected model of operational reality that evolves with real-time data.
+**[Read the full testing doc →](docs/TESTING.md)** — the isolation model, a
+per-file breakdown of what's verified, the coverage table with every module,
+ten regressions walked through individually, and what's deliberately left
+untested and why.
 
 ---
 
-## 📈 **Future Roadmap**
+## Configuration
 
-### **Phase 1: Core Platform** ✅
-- [x] AI-powered route optimization
-- [x] Real-time weather integration
-- [x] Accessibility analysis
-- [x] Cloudflare edge deployment
+Everything lives in `.env`; `.env.example` is the annotated full list. Nothing
+in the package calls `os.getenv` directly. Credentials are `SecretStr`, so they
+don't surface in logs or tracebacks — there's a test asserting that.
 
-### **Phase 2: Advanced Features** 🚧
-- [ ] Multi-modal transportation
-- [ ] Predictive maintenance
-- [ ] Advanced analytics dashboard
-- [ ] Mobile applications
+`GOOGLE_STREET_VIEW_API_KEY` is optional and falls back to
+`GOOGLE_MAPS_API_KEY`; they're the same Google Maps Platform credential unless
+you deliberately scope them apart.
 
-### **Phase 3: Enterprise Scale** 🔮
-- [ ] Multi-tenant architecture
-- [ ] Advanced security features
-- [ ] Global deployment
-- [ ] Enterprise integrations
+One caveat worth knowing: **`SOLVER_NUM_WORKERS` does not parallelise the
+default search.** OR-Tools' guided local search is single-threaded and
+`RoutingSearchParameters` exposes no worker count; the value reaches CP-SAT's
+`num_workers`, which only applies if CP-SAT is enabled. To spend more compute on
+a solve, raise `SOLVER_TIME_LIMIT_SEC`.
 
 ---
 
-## 🤝 **Contributing**
+## Deployment
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+```bash
+uvicorn hivepath.api.application:app --host 0.0.0.0 --port 8000
+```
 
-### **Development Setup**
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+Set `ENVIRONMENT=production` for JSON logs and to disable auto-reload.
 
----
-
-## 📄 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 **Team**
-
-**HivePath AI Team** - HackHarvard 2024
-- **AI/ML Engineers** - Graph Neural Networks & Swarm Intelligence
-- **Full-Stack Developers** - Next.js & FastAPI
-- **DevOps Engineers** - Cloudflare & Infrastructure
-- **UX/UI Designers** - Dashboard & Visualization
-
----
-
-## 📞 **Contact**
-
-- **GitHub**: [@kbhatnagar1506](https://github.com/kbhatnagar1506)
-- **Project**: [HivePath AI](https://github.com/kbhatnagar1506/Hivepath-AI)
-- **Demo**: [Live Dashboard](http://localhost:3001)
-
----
-
-<div align="center">
-
-**🚀 Built with ❤️ for HackHarvard 2024**
-
-*Making logistics intelligent, accessible, and self-healing*
-
-[![GitHub stars](https://img.shields.io/github/stars/kbhatnagar1506/Hivepath-AI?style=social)](https://github.com/kbhatnagar1506/Hivepath-AI)
-[![GitHub forks](https://img.shields.io/github/forks/kbhatnagar1506/Hivepath-AI?style=social)](https://github.com/kbhatnagar1506/Hivepath-AI)
-
-</div>
+Plans are held in memory and are lost on restart. Before running more than one
+instance, swap `storage/repositories.py` for a durable backend — the repository
+interface exists to make that a contained change.
