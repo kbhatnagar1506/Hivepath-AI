@@ -6,6 +6,8 @@
 
 ### The routing engine that treats accessibility as a first-class constraint — not an afterthought.
 
+🏆 **Most Loved Project — HackHarvard 2024**
+
 [![CI](https://github.com/kbhatnagar1506/Hivepath-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/kbhatnagar1506/Hivepath-AI/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](hivepath-ai/pyproject.toml)
@@ -167,7 +169,7 @@ plainly, nothing implied that isn't real.
 **What's actually running:**
 
 - **CI** — [`.github/workflows/ci.yml`](.github/workflows/ci.yml), three jobs
-  on every push and PR to `main`: the full test suite across Python 3.11,
+  on every push and PR to `claude`: the full test suite across Python 3.11,
   3.12, and 3.13; a coverage report; and `ruff` lint. All three currently
   pass. This is genuinely load-bearing — it's what lets the test-count and
   coverage badges at the top of this page mean something instead of being

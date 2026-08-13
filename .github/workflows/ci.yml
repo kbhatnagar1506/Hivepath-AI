@@ -2,12 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [claude]
     paths:
       - "hivepath-ai/**"
       - ".github/workflows/ci.yml"
   pull_request:
-    branches: [main]
+    branches: [claude]
     paths:
       - "hivepath-ai/**"
       - ".github/workflows/ci.yml"
