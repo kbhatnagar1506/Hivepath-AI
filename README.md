@@ -44,6 +44,165 @@ python -m hivepath             # → http://localhost:8000/docs
 
 ---
 
+## What HivePath does
+
+Send it a depot, a fleet, and a list of stops. Get back a plan: which vehicle
+visits which stops, in what order, arriving when, carrying how much load,
+emitting how much CO₂ — and, if the fleet can't cover everyone, exactly which
+stops were left out and why.
+
+- **Capacitated routing with time windows.** The core solve — OR-Tools CVRPTW
+  with per-vehicle capacity, per-stop delivery windows, and configurable speed
+  and time-limit tradeoffs via four presets (`ultra_fast` → `quality`).
+- **Accessibility-aware prioritization.** The one thing this project exists
+  for: a stop's accessibility score raises the cost of dropping it, so a
+  capacity-constrained solve keeps hard-to-reach stops rather than shedding
+  them first. See [`#how-accessibility-enters-the-objective`](hivepath-ai/README.md#how-accessibility-enters-the-objective).
+- **Real road distances, when you want them.** Google Distance Matrix with
+  live traffic, correctly tiled to respect the API's element limits — or free
+  haversine distances with no credentials at all. Every plan reports which one
+  it actually used.
+- **Kerbside accessibility scoring.** Given a lat/lng, fetch Street View
+  imagery and score how hard it is to legally stop, park, and unload there —
+  see [Machine Learning](#machine-learning) below for exactly what's doing the
+  scoring and how much of it is actually "AI."
+- **Disruption handling.** Report a blocked stop and get a replan in the same
+  call, warm-started from the previous plan so routes don't reshuffle
+  wholesale over one closed dock.
+- **A typed REST API.** FastAPI, Pydantic-validated end to end — malformed
+  input never reaches the solver. Full reference in
+  [`hivepath-ai/README.md`](hivepath-ai/README.md#api).
+
+**What it isn't, on purpose:** not a fleet-management platform, not a live-map
+UI (the `integrated_dashboard/` Next.js app exists in this repo but predates
+the current API and isn't wired to it), and not built for multi-instance
+deployment yet — plans live in memory and don't survive a restart or a second
+process. It's the routing core: solver, accessibility model, and API, meant to
+sit underneath something bigger.
+
+---
+
+## Machine Learning
+
+This section is here so nobody has to guess. Three things in this codebase
+touch what could reasonably be called "AI," and here's exactly how deep each
+one goes — no more, no less than what's actually running.
+
+### 1. The routing itself: not ML
+
+The actual routing — the part that decides which vehicle visits which stop in
+what order — is [Google OR-Tools](https://developers.google.com/optimization),
+a constraint solver, not a learned model. This is where almost all of the
+engineering weight in this repository actually sits: a capacitated VRP with
+time-window and capacity dimensions, per-stop drop disjunctions, and a
+warm-started local search. It's correct and it's tested. It is not machine
+learning, and nothing here claims otherwise.
+
+### 2. Service-time prediction: a small MLP, off by default
+
+[`hivepath.ml.service_time`](hivepath-ai/src/hivepath/ml/service_time.py)
+predicts how many minutes a stop will take, feeding into the routing solve.
+Two tiers, selected automatically:
+
+- **Heuristic (what actually runs today):** closed-form arithmetic —
+  `base_minutes + minutes_per_demand_unit × demand + max_surcharge × (1 − accessibility)`,
+  clamped to a 3–120 minute range. Genuinely not ML. This is the model every
+  deployment of this repository uses right now, because no trained checkpoint
+  ships with it (see below).
+- **Neural (optional, currently inactive):** a plain 3-layer feedforward
+  network — `Linear(6→128) → ReLU → Linear(128→64) → ReLU → Linear(64→1)` —
+  over demand, accessibility, hour, and weekday. That's the whole
+  architecture. No attention, no recurrence, no graph structure. It activates
+  only if `pip install -e ".[ml]"` (adds `torch`) **and** a checkpoint exists
+  at `mlartifacts/service_time_mlp.pt` — which this repository does not ship.
+  Train your own with `hivepath-ai/scripts/train_service_time.py` if you want
+  to turn it on; until then, `get_service_time_model()` always resolves to the
+  heuristic, and says so in the logs.
+
+**On the Graph Neural Network this project used to claim:** it didn't hold up,
+and it's been removed rather than left in place. An earlier version of this
+codebase had a training script named for a GNN
+(`train_service_time_gnn.py`) and a matching checkpoint
+(`service_time_gnn.pt`). Neither actually was one — the training script's own
+model class was a plain MLP, with a code comment reading *"here we keep simple
+MLP for speed"* where the graph convolution was supposed to be. No adjacency
+structure, no message passing, ever ran. That script, its checkpoint, and the
+`torch-geometric` dependency it implied have all been deleted from this
+repository (see [`legacy/README.md`](hivepath-ai/legacy/README.md) for the
+full accounting) rather than kept around implying a capability that was never
+real. If a genuinely graph-structured model — learning from stop-to-stop
+routing history via real message passing — gets built here later, it'll be
+documented with the same specificity as everything above, not before.
+
+### 3. Accessibility scoring: a thin wrapper around an external vision model
+
+`POST /api/v1/accessibility/analyze` doesn't run a model this project trained.
+It fetches up to four Street View images for a location
+([`integrations/street_view.py`](hivepath-ai/src/hivepath/integrations/street_view.py))
+and sends them to an external multimodal chat model — OpenAI-compatible,
+`gpt-4o-mini` by default — with a structured prompt asking for an access score
+(0–100), hazards, and findings as JSON
+([`integrations/vision.py`](hivepath-ai/src/hivepath/integrations/vision.py)).
+The engineering here is entirely in what wraps that call, not in the model
+itself: strict response validation, clamping every field to its documented
+range, and *enforcing* — in code, not just requesting in the prompt — that any
+critical hazard caps the score at 35 regardless of what the model returned.
+Without an `OPENAI_API_KEY`, the endpoint returns `503`, not a plausible-looking
+fabricated score.
+
+### The honest summary
+
+If you came here expecting a novel deep-learning architecture, that's not
+what this is. If you came for a correct, tested, accessibility-weighted VRP
+solver — with a couple of small, honestly-labeled, optional ML components,
+and a clean seam to plug in better ones later — that's exactly what this is.
+
+---
+
+## Infrastructure
+
+Same policy as the Machine Learning section above: what's here, stated
+plainly, nothing implied that isn't real.
+
+**What's actually running:**
+
+- **CI** — [`.github/workflows/ci.yml`](.github/workflows/ci.yml), three jobs
+  on every push and PR to `main`: the full test suite across Python 3.11,
+  3.12, and 3.13; a coverage report; and `ruff` lint. All three currently
+  pass. This is genuinely load-bearing — it's what lets the test-count and
+  coverage badges at the top of this page mean something instead of being
+  copied from a local run and quietly going stale.
+- **Storage** — in-memory, single-process, explicitly not durable. Plans and
+  blocked-stop state are lost on restart. See
+  [`hivepath-ai/docs/ARCHITECTURE.md#7-storage-whats-durable-and-what-isnt`](hivepath-ai/docs/ARCHITECTURE.md#7-storage-whats-durable-and-what-isnt).
+
+**What doesn't exist yet:**
+
+- **No deployment pipeline.** CI runs tests; nothing builds a container,
+  publishes an image, or deploys anywhere automatically. `uvicorn
+  hivepath.api.application:app` is the whole runbook right now — see
+  [Deployment](hivepath-ai/README.md#deployment) for what that requires
+  before running more than one instance.
+- **No hosted instance.** There is no live URL where this service is running
+  publicly. If you see one claimed anywhere for this project, it's stale.
+
+**One thing worth naming directly, since it causes visible noise on every
+push:** this repository's commits carry a failing "Cloudflare Pages" check,
+from a Cloudflare GitHub App connected outside of any file tracked in this
+repo — there's no `wrangler.toml`, no Pages build config, and no static
+frontend at a path Cloudflare's auto-detection could resolve anywhere here.
+It isn't deploying anything; it's failing on a build target that doesn't
+exist in the tracked code, every time. It is not part of this project's
+design, and removing it needs the repo owner's Cloudflare/GitHub account
+access, not something fixable from within this codebase. If you see this
+check failing on a commit, that's why — it's safe to ignore, and unrelated
+to whether the actual CI (above) passed. The separate `cloudflare-integration/`
+directory some earlier commits reference (a manual Workers AI + R2 setup) was
+unrelated to it and was removed as unused — see
+[`hivepath-ai/legacy/README.md`](hivepath-ai/legacy/README.md).
+
+---
+
 ## How it stacks up
 
 |  | Distance-only VRP<br>*(typical commercial stack)* | HivePath AI |

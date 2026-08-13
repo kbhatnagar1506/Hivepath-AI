@@ -45,10 +45,13 @@ numbers against reality.
 ### ML is additive, never load-bearing
 
 The solver, the API, and the whole request path work correctly with zero ML
-dependencies installed. `torch` and `torch-geometric` are an optional extra
-(`pip install -e ".[ml]"`); their absence downgrades the service-time model to
-a closed-form heuristic, not an error. See
-[`ml/service_time.py`](../src/hivepath/ml/service_time.py).
+dependencies installed. `torch` is an optional extra (`pip install -e ".[ml]"`)
+gating a small feedforward network, not a graph model - no `torch-geometric`
+dependency exists in this codebase. Its absence downgrades the service-time
+model to a closed-form heuristic, not an error. See
+[`ml/service_time.py`](../src/hivepath/ml/service_time.py) and the root
+[README's Machine Learning section](../../README.md#machine-learning) for
+exactly what that model is and isn't.
 
 ---
 

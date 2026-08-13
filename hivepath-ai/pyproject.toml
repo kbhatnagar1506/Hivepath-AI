@@ -39,10 +39,11 @@ dependencies = [
 
 [project.optional-dependencies]
 # Torch is a large install and the service degrades gracefully without it,
-# so the neural models are opt-in rather than a hard dependency.
+# so the neural model is opt-in rather than a hard dependency. It's a plain
+# feedforward network (see hivepath.ml.service_time) - no graph layers, so
+# no torch-geometric dependency here.
 ml = [
     "torch>=2.2",
-    "torch-geometric>=2.5",
 ]
 vlm = [
     "openai>=1.43",

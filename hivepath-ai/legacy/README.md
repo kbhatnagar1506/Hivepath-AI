@@ -34,8 +34,19 @@ Not ported, because nothing imported them:
 - `services/multi_location_solver.py` and `routers/multi_location.py` - the
   router was never registered on the app, so these endpoints never existed
 - `routers/integration.py` - likewise never registered
+- `services/service_time_model.py`'s GNN branch specifically: it tried to load
+  a `SAGEConv`-based checkpoint, but the training script that produced that
+  checkpoint (`ml/train_service_time_gnn.py`, also not ported) never actually
+  built a graph model despite its name - its own code comment says "here we
+  keep simple MLP for speed." The new `hivepath/ml/service_time.py` is an
+  honest version of that: a plain feedforward MLP, documented as such, with no
+  graph layers and no `torch_geometric` dependency.
 
-The trained artefacts these used are still in `models/` and `mlartifacts/`.
+The `models/*.joblib` and `mlartifacts/*.pt` checkpoints these produced have
+been removed from the repository - none of them could be loaded by the ported
+code as it stands (wrong filename, or an architecture the new loader doesn't
+build). See the root [`README.md`](../../README.md#machine-learning) for what
+actually runs today.
 
 ## `legacy/scripts/`
 
@@ -48,8 +59,11 @@ Two cautions if you revisit them:
 
 1. A live Google Maps API key was hardcoded in `enable_google_vision.py`,
    `enhanced_image_stats.py`, and `weather_traffic_integration.py`. Those
-   literals now read `os.getenv("GOOGLE_MAPS_API_KEY", "")`, but **the key is
-   still in git history and must be rotated.**
+   literals now read `os.getenv("GOOGLE_MAPS_API_KEY", "")`. The key has since
+   been purged from this repository's git history entirely (via
+   `git filter-repo`, verified against every blob in a fresh clone); it should
+   still be treated as compromised if you're auditing a mirror or fork made
+   before that happened.
 2. Several scripts report fabricated figures. `presentation_demo.py` generates
    predictions with `random.uniform()` and prints accuracy percentages as string
    literals. Do not cite numbers from these as measurements.
