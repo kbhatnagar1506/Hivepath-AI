@@ -72,7 +72,7 @@ class TestCapacityAwareRoutes:
 
         routes = capacity_aware_routes(depot, stops, vehicles)
         demand_of = {i + 1: s.demand for i, s in enumerate(stops)}
-        for route, vehicle in zip(routes, vehicles):
+        for route, vehicle in zip(routes, vehicles, strict=True):
             assert sum(demand_of[n] for n in route) <= vehicle.capacity
 
     def test_excess_demand_is_left_unassigned_rather_than_overloading(self):

@@ -6,8 +6,8 @@ already been checked here, which is why the solver can assume well-formed input.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from enum import Enum
+from datetime import UTC, datetime
+from enum import StrEnum
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -27,7 +27,7 @@ def _reject_duplicates(ids: list[str], label: str) -> None:
         raise ValueError(f"duplicate {label} ids: {sorted(duplicates)}")
 
 
-class Preset(str, Enum):
+class Preset(StrEnum):
     """Named speed/quality trade-offs."""
 
     ULTRA_FAST = "ultra_fast"
@@ -143,7 +143,7 @@ class OptimizeRequest(BaseModel):
         return self
 
     def domain_stops(self, base: datetime | None = None) -> list[Stop]:
-        base = base or datetime.now(timezone.utc)
+        base = base or datetime.now(UTC)
         return [s.to_domain(base) for s in self.stops]
 
     def domain_vehicles(self) -> list[Vehicle]:

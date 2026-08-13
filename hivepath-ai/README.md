@@ -20,7 +20,7 @@ stops, at zero cost to overall throughput.**
 ```bash
 cp .env.example .env          # optional — every value has a working default
 pip install -e ".[dev]"
-pytest                        # 190 tests, 85% coverage
+pytest                        # 190 tests, 86% coverage
 python -m hivepath            # http://localhost:8000/docs
 ```
 
@@ -37,7 +37,7 @@ python -m hivepath            # http://localhost:8000/docs
 | Distance source transparency | Rarely exposed | Every plan reports `matrix_source`: `haversine` or `google_maps` — never claims one while using the other |
 | Disruption response | Full manual re-plan | `POST /incidents` blocks a stop and replans in one call, warm-started from the previous plan |
 | Failure mode on partial infeasibility | Often a hard error | 200 OK with `ok: false` and a reason, or a partial plan with `dropped_stop_ids` — never a crash for a well-formed problem |
-| Test suite | Frequently absent or unverifiable from outside | 190 tests, 85% coverage, runnable by anyone who clones the repo |
+| Test suite | Frequently absent or unverifiable from outside | 190 tests, 86% coverage, runnable by anyone who clones the repo |
 | Impact claims | Marketing figures | `scripts/benchmark_impact.py` — run it yourself, seed included |
 
 ---
@@ -261,7 +261,7 @@ pytest -k accessibility
 python -m coverage run --source=src/hivepath -m pytest && python -m coverage report
 ```
 
-**190 passed in ~70s.** Coverage 85% overall, concentrated exactly where it
+**190 passed in ~70s.** Coverage 86% overall, concentrated exactly where it
 should be:
 
 | Module | Coverage | | Module | Coverage |

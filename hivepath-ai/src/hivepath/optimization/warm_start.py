@@ -11,7 +11,7 @@ available", every solve silently ran cold and the failure never surfaced.
 from __future__ import annotations
 
 import math
-from typing import Sequence
+from collections.abc import Sequence
 
 from hivepath.domain import Depot, Stop, Vehicle
 from hivepath.logging_config import get_logger
@@ -89,7 +89,7 @@ def capacity_aware_routes(
     demand_of = {index + 1: stop.demand for index, stop in enumerate(stops)}
 
     overflow: list[int] = []
-    for route, vehicle in zip(routes, vehicles):
+    for route, vehicle in zip(routes, vehicles, strict=True):
         load = 0
         kept: list[int] = []
         for node in route:
@@ -102,7 +102,7 @@ def capacity_aware_routes(
 
     # Re-home displaced stops wherever capacity remains.
     for node in list(overflow):
-        for route, vehicle in zip(routes, vehicles):
+        for route, vehicle in zip(routes, vehicles, strict=True):
             load = sum(demand_of[n] for n in route)
             if load + demand_of[node] <= vehicle.capacity:
                 route.append(node)

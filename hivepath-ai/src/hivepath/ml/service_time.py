@@ -17,9 +17,9 @@ Three things are deliberately different from the previous implementation:
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from collections.abc import Sequence
 from datetime import datetime
 from functools import lru_cache
-from typing import Sequence
 
 from hivepath.config import Settings, get_settings
 from hivepath.domain import Stop
@@ -43,7 +43,7 @@ class ServiceTimeModel(ABC):
 
     def predict_by_id(self, stops: Sequence[Stop]) -> dict[str, float]:
         """Predictions keyed by stop id, which is what callers usually want."""
-        return dict(zip((s.id for s in stops), self.predict(stops)))
+        return dict(zip((s.id for s in stops), self.predict(stops), strict=True))
 
 
 class HeuristicServiceTimeModel(ServiceTimeModel):

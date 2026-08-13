@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from hivepath.config import Settings, get_settings
 from hivepath.integrations.street_view import DEFAULT_HEADINGS, fetch_panorama

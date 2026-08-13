@@ -12,7 +12,7 @@ tracebacks, or ``repr`` output.
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 from functools import lru_cache
 from pathlib import Path
 from typing import Annotated
@@ -32,7 +32,7 @@ def _find_project_root() -> Path:
 PROJECT_ROOT = _find_project_root()
 
 
-class Environment(str, Enum):
+class Environment(StrEnum):
     DEVELOPMENT = "development"
     STAGING = "staging"
     PRODUCTION = "production"

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from hivepath.domain import Depot, Stop, TimeWindow, Vehicle
+from hivepath.domain import Stop, TimeWindow, Vehicle
 from hivepath.optimization.distance import DistanceMatrix
 from hivepath.optimization.solver import SolverOptions, solve_vrp
 
@@ -47,7 +47,7 @@ class TestConstraints:
 
         plan = solve_vrp(depot, stops, vehicles, SolverOptions(**FAST))
         assert plan.ok
-        for route, vehicle in zip(plan.routes, vehicles):
+        for route, vehicle in zip(plan.routes, vehicles, strict=True):
             assert route.load <= vehicle.capacity
 
     def test_excess_demand_is_dropped_not_crammed(self, depot):

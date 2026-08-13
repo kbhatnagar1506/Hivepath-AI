@@ -13,7 +13,7 @@ single place that conversion happens.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 # Kilograms of CO2 per kilometre travelled, by vehicle fuel type.
@@ -81,7 +81,7 @@ def _iso_to_minutes(base: datetime, raw: str) -> int | None:
     except ValueError:
         return None
     if moment.tzinfo is None:
-        moment = moment.replace(tzinfo=base.tzinfo or timezone.utc)
+        moment = moment.replace(tzinfo=base.tzinfo or UTC)
     return max(0, int((moment - base).total_seconds() // 60))
 
 
@@ -133,7 +133,7 @@ class Stop:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any], base: datetime | None = None) -> Stop:
-        base = base or datetime.now(timezone.utc)
+        base = base or datetime.now(UTC)
         window = data.get("time_window")
         return cls(
             id=str(data["id"]),

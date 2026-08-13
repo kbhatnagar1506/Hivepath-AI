@@ -1,6 +1,6 @@
 # Testing
 
-190 tests, 85% line coverage, ~70 seconds. This document is the reasoning
+190 tests, 86% line coverage, ~70 seconds. This document is the reasoning
 behind the suite — how it's isolated, what each file actually verifies, and
 what it deliberately does not test.
 
@@ -69,44 +69,53 @@ for example every solver preset, or every invalid-settings case.
 
 ## Coverage, by module
 
+`coverage report --skip-covered` — the ten modules at a full 100% (mostly
+`__init__.py` files and `api/routes/incidents.py`) are omitted for brevity;
+run it yourself without the flag for the complete list.
+
 ```
 Name                                       Stmts   Miss  Cover
-------------------------------------------------------------------
+--------------------------------------------------------------
+src/hivepath/__main__.py                      10     10     0%
+src/hivepath/accessibility/analyzer.py        40      8    80%
+src/hivepath/accessibility/enricher.py        35     15    57%
+src/hivepath/accessibility/policy.py          31      1    97%
+src/hivepath/api/application.py               45      8    82%
+src/hivepath/api/routes/accessibility.py      22      6    73%
+src/hivepath/api/routes/health.py             13      1    92%
+src/hivepath/api/routes/optimization.py       17      5    71%
+src/hivepath/api/routes/plans.py              24      1    96%
 src/hivepath/api/schemas.py                  135      2    99%
 src/hivepath/config.py                        80      1    99%
-src/hivepath/optimization/solver.py          145      3    98%
 src/hivepath/domain/models.py                140      3    98%
-src/hivepath/storage/repositories.py         102      4    96%
-src/hivepath/optimization/penalties.py        21      1    95%
-src/hivepath/planning.py                      75      4    95%
-src/hivepath/optimization/warm_start.py       69      4    94%
-src/hivepath/api/routes/plans.py              24      1    96%
-src/hivepath/api/routes/health.py             13      1    92%
-src/hivepath/api/application.py               45      8    82%
-src/hivepath/accessibility/analyzer.py        39      8    79%
-src/hivepath/logging_config.py                34      8    76%
-src/hivepath/api/routes/optimization.py       17      5    71%
-src/hivepath/api/routes/accessibility.py      22      6    73%
-src/hivepath/optimization/distance.py         81     22    73%
-src/hivepath/ml/service_time.py               86     28    67%
-src/hivepath/integrations/vision.py           57     20    65%
-src/hivepath/accessibility/enricher.py        35     15    57%
 src/hivepath/integrations/google_maps.py      53     29    45%
 src/hivepath/integrations/street_view.py      34     19    44%
-src/hivepath/__main__.py                      10     10     0%
-------------------------------------------------------------------
-TOTAL                                       1397    203    85%
+src/hivepath/integrations/vision.py           58     20    66%
+src/hivepath/logging_config.py                34      8    76%
+src/hivepath/ml/service_time.py               86     28    67%
+src/hivepath/optimization/distance.py         82     22    73%
+src/hivepath/optimization/penalties.py        21      1    95%
+src/hivepath/optimization/solver.py          146      3    98%
+src/hivepath/optimization/warm_start.py       69      4    94%
+src/hivepath/planning.py                      75      4    95%
+src/hivepath/storage/repositories.py         102      4    96%
+--------------------------------------------------------------
+TOTAL                                       1401    203    86%
+
+10 files skipped due to complete coverage.
 ```
 
 **The pattern is deliberate, not accidental.** Everything the solver's
 correctness depends on — schemas, config, the solver itself, domain models,
-storage, penalties, planning, warm start — sits at 94–99%. The lower numbers
-cluster entirely in `integrations/` (the network clients) and the neural-model
-branch of `ml/service_time.py`, which the hermetic fixture specifically
-prevents from running: there is no credential in the test environment for them
-to succeed with. `__main__.py` at 0% is the `uvicorn.run()` entry point, which
-starting a real server would be needed to exercise and which none of the unit
-tests should be doing.
+storage, penalties, planning, warm start — sits at 94–99%, and
+`api/routes/incidents.py` is a full 100% (not shown above — it's one of the
+ten fully-covered files this view skips). The lower numbers cluster entirely
+in `integrations/` (the network clients) and the neural-model branch of
+`ml/service_time.py`, which the hermetic fixture specifically prevents from
+running: there is no credential in the test environment for them to succeed
+with. `__main__.py` at 0% is the `uvicorn.run()` entry point, which starting a
+real server would be needed to exercise and which none of the unit tests
+should be doing.
 
 If you add real credentials to a local `.env` and want to raise those numbers,
 that's what `pytest -m integration` is reserved for — the marker exists in

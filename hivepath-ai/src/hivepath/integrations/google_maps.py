@@ -8,8 +8,8 @@ any fleet above ten stops silently exceeded the element limit.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
 import httpx
 

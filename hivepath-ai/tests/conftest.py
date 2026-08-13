@@ -7,7 +7,7 @@ clearing them here neutralises any real ``.env`` a developer has locally.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from fastapi.testclient import TestClient
@@ -49,7 +49,7 @@ def settings() -> Settings:
 
 @pytest.fixture
 def base_time() -> datetime:
-    return datetime(2026, 8, 8, 8, 0, 0, tzinfo=timezone.utc)
+    return datetime(2026, 8, 8, 8, 0, 0, tzinfo=UTC)
 
 
 @pytest.fixture

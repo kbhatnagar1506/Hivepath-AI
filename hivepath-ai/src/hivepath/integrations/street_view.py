@@ -8,7 +8,7 @@ names for the same credential.
 from __future__ import annotations
 
 import asyncio
-from typing import Sequence
+from collections.abc import Sequence
 
 import httpx
 
@@ -96,7 +96,7 @@ async def fetch_panorama(
         )
 
     images: list[bytes] = []
-    for heading, result in zip(headings, results):
+    for heading, result in zip(headings, results, strict=True):
         if isinstance(result, BaseException):
             logger.debug("street view heading %s unavailable: %s", heading, result)
         else:

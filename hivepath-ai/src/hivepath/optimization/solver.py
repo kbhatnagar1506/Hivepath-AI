@@ -8,9 +8,10 @@ enters the objective.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import datetime, timezone
-from typing import Any, Sequence
+from datetime import UTC, datetime
+from typing import Any
 
 from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
@@ -140,7 +141,7 @@ def solve_vrp(
     if not routable:
         return Plan.failed("all_stops_blocked", blocked=excluded)
 
-    started_at = datetime.now(timezone.utc).replace(microsecond=0)
+    started_at = datetime.now(UTC).replace(microsecond=0)
     nodes: list[Depot | Stop] = [depot, *routable]
     node_count = len(nodes)
     vehicle_count = len(vehicles)

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Sequence
+from collections.abc import Sequence
 
 from hivepath.accessibility.analyzer import AccessibilityAnalyzer
 from hivepath.config import Settings, get_settings
@@ -65,7 +65,7 @@ class AccessibilityEnricher:
         )
 
         assessed = 0
-        for stop, analysis in zip(pending, results):
+        for stop, analysis in zip(pending, results, strict=True):
             if not analysis.get("assessed", False):
                 continue
             assessed += 1

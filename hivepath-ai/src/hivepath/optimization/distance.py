@@ -10,8 +10,9 @@ reported ``google_maps`` even when it had silently fallen back.
 from __future__ import annotations
 
 import math
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Literal, Sequence
+from typing import Any, Literal
 
 from hivepath.config import Settings, get_settings
 from hivepath.logging_config import get_logger

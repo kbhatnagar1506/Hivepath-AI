@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 
@@ -58,22 +58,22 @@ class TestTimeWindow:
             TimeWindow(500, 100)
 
     def test_parses_bare_time_against_base_date(self):
-        base = datetime(2026, 8, 8, 8, 0, tzinfo=timezone.utc)
+        base = datetime(2026, 8, 8, 8, 0, tzinfo=UTC)
         window = TimeWindow.from_iso(base, {"start": "09:00:00", "end": "11:00:00"})
         assert (window.start_min, window.end_min) == (60, 180)
 
     def test_unparseable_input_widens_to_full_day(self):
         """Collapsing to zero would silently make the stop unservable."""
-        base = datetime(2026, 8, 8, 8, 0, tzinfo=timezone.utc)
+        base = datetime(2026, 8, 8, 8, 0, tzinfo=UTC)
         window = TimeWindow.from_iso(base, {"start": "not-a-time", "end": "also-not"})
         assert (window.start_min, window.end_min) == (0, 24 * 60)
 
     def test_missing_window_is_full_day(self):
-        base = datetime(2026, 8, 8, 8, 0, tzinfo=timezone.utc)
+        base = datetime(2026, 8, 8, 8, 0, tzinfo=UTC)
         assert TimeWindow.from_iso(base, None) == TimeWindow.full_day()
 
     def test_reversed_bounds_are_normalised(self):
-        base = datetime(2026, 8, 8, 8, 0, tzinfo=timezone.utc)
+        base = datetime(2026, 8, 8, 8, 0, tzinfo=UTC)
         window = TimeWindow.from_iso(base, {"start": "11:00:00", "end": "09:00:00"})
         assert window.start_min < window.end_min
 

@@ -12,7 +12,7 @@ had them the other way round, so the feature was always its default.
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from hivepath.accessibility import AccessibilityEnricher
@@ -107,7 +107,7 @@ async def create_plan(
 ) -> Plan:
     """Run the full planning pipeline for a request."""
     settings = settings or get_settings()
-    base = datetime.now(timezone.utc)
+    base = datetime.now(UTC)
 
     depot = request.depot.to_domain()
     stops = request.domain_stops(base)
@@ -177,7 +177,7 @@ async def replan(
     request = OptimizeRequest.model_validate({**stored, "run_id": new_run_id})
     previous = get_plan_repository().get(original_run_id)
 
-    base = datetime.now(timezone.utc)
+    base = datetime.now(UTC)
     depot = request.depot.to_domain()
     stops = request.domain_stops(base)
     vehicles = request.domain_vehicles()
