@@ -169,7 +169,7 @@ plainly, nothing implied that isn't real.
 **What's actually running:**
 
 - **CI** — [`.github/workflows/ci.yml`](.github/workflows/ci.yml), three jobs
-  on every push and PR to `claude`: the full test suite across Python 3.11,
+  on every push and PR to `main`: the full test suite across Python 3.11,
   3.12, and 3.13; a coverage report; and `ruff` lint. All three currently
   pass. This is genuinely load-bearing — it's what lets the test-count and
   coverage badges at the top of this page mean something instead of being
